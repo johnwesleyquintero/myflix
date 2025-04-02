@@ -74,13 +74,21 @@ This document serves as an issue tracker for the project. It provides an overvie
 *Summary: Found 31 errors across 12 files.*
 ******
 
+
+
 ## New Issues
 
 *(This section is for manually adding new issues not detected by the compiler check)*
 
 | ID  | Category     | Description                               | Status  | Priority | Component   | Import Trace | Steps to Reproduce | Expected Behavior | Suggested Fix |
 | --- | ------------ | ----------------------------------------- | ------- | -------- | ----------- | ------------ | ------------------- | ------------------- | --------------- |
-|     |              |                                           |         |          |             |              |                     |                     |                 |
+| 6   | Build Error  | Module not found: Can't resolve '@/components/input' | Open    | High     | `./src/app/page.tsx` | N/A | 1. Run `vercel build`. <br> 2. Observe the error message regarding the missing module. | The module `@/components/input` should be resolved correctly. | - Verify the path and existence of the `input` component. <br> - Ensure the component is correctly exported and imported. |
+| 7   | Build Error  | Module not found: Can't resolve '@/lib/prisma' | Open    | High     | `./src/pages/api/auth/login.ts` | N/A | 1. Run `vercel build`. <br> 2. Observe the error message regarding the missing module. | The module `@/lib/prisma` should be resolved correctly. | - Verify the path and existence of the `prisma` module. <br> - Ensure the module is correctly exported and imported. |
+| 8   | Build Error  | Module not found: Can't resolve 'bcrypt' | Open    | High     | `./src/pages/api/auth/login.ts` | N/A | 1. Run `vercel build`. <br> 2. Observe the error message regarding the missing module. | The module `bcrypt` should be resolved correctly. | - Verify the installation of the `bcrypt` package. <br> - Ensure the package is correctly imported. |
+| 9   | Build Error  | Module not found: Can't resolve '@/lib/prisma' | Open    | High     | `./src/pages/api/auth/register.ts` | N/A | 1. Run `vercel build`. <br> 2. Observe the error message regarding the missing module. | The module `@/lib/prisma` should be resolved correctly. | - Verify the path and existence of the `prisma` module. <br> - Ensure the module is correctly exported and imported. |
+| 10  | Build Error  | Module not found: Can't resolve 'bcrypt' | Open    | High     | `./src/pages/api/auth/register.ts` | N/A | 1. Run `vercel build`. <br> 2. Observe the error message regarding the missing module. | The module `bcrypt` should be resolved correctly. | - Verify the installation of the `bcrypt` package. <br> - Ensure the package is correctly imported. |
+
+
 
 ******
 
