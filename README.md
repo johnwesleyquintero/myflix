@@ -3,6 +3,7 @@
 MyFlix is a full-stack web application that allows users to browse, search, and watch movies and TV shows. It is built using React, Next.js, TypeScript, Tailwind CSS, MongoDB, Prisma, NextAuth, and Vercel.
 
 A full-stack Netflix clone built with:
+
 - Next.js for server-side rendering
 - React for the frontend
 - Tailwind CSS for styling
@@ -23,14 +24,18 @@ A full-stack Netflix clone built with:
 
 1. Clone the repository
 2. Install dependencies:
+
 ```bash
 npm install
 ```
+
 3. Set up environment variables (see `.env.example`)
 4. Run the development server:
+
 ```bash
 npm run dev
 ```
+
 5. Open [http://localhost:3000](http://localhost:3000) in your browser
 
 ## Tech Stack

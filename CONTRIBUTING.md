@@ -20,6 +20,7 @@ Thank you for considering contributing to Myflix! We welcome all contributions t
 ## Reporting Issues
 
 When reporting bugs, please include:
+
 - Steps to reproduce
 - Expected behavior
 - Actual behavior

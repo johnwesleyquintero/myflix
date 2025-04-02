@@ -4,7 +4,7 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
 
   images: {
-    domains: ['example.com'],
+    domains: ["example.com"],
   },
   env: {
     NEXTAUTH_URL: process.env.NEXTAUTH_URL,
@@ -12,7 +12,7 @@ const nextConfig: NextConfig = {
   webpack: (config) => {
     config.resolve.fallback = { fs: false };
     return config;
-  }
+  },
 };
 
 export default nextConfig;

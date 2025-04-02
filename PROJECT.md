@@ -9,6 +9,7 @@ This is a roadmap document on building a full-stack web application. In this pro
 To begin, let's set up our development environment.
 
 1. **Initialize Next.js Project:**
+
    - Open your terminal and run:
      ```bash
      npx create-next-app@latest myflix --typescript
@@ -19,6 +20,7 @@ To begin, let's set up our development environment.
      ```
 
 2. **Install Tailwind CSS:**
+
    - Run the following command to install Tailwind CSS and its dependencies:
      ```bash
      npm install -D tailwindcss postcss autoprefixer
@@ -29,6 +31,7 @@ To begin, let's set up our development environment.
      ```
 
 3. **Configure Tailwind CSS:**
+
    - Update the `tailwind.config.js` file to include the following configuration:
      ```javascript
      /** @type {import('tailwindcss').Config} */
@@ -41,7 +44,7 @@ To begin, let's set up our development environment.
          extend: {},
        },
        plugins: [],
-     }
+     };
      ```
 
 4. **Run the Development Server:**
@@ -56,24 +59,41 @@ To begin, let's set up our development environment.
 In this section, we will build the authentication screen UI.
 
 1. **Create the Auth Screen:**
+
    - Open the `pages` folder and create a new file called `auth.tsx`.
    - Add the following code to set up the basic structure of the authentication screen:
+
      ```javascript
-     import React from 'react';
+     import React from "react";
 
      const Auth = () => {
        return (
          <div className="relative h-screen w-screen bg-black">
-           <img src="/images/hero.jpg" className="absolute inset-0 -z-10 opacity-60" />
+           <img
+             src="/images/hero.jpg"
+             className="absolute inset-0 -z-10 opacity-60"
+           />
            <div className="flex justify-center items-center h-full">
              <form className="bg-black/70 p-14 rounded-md w-1/3">
-               <h1 className="text-3xl font-semibold text-white mb-6">Sign In</h1>
+               <h1 className="text-3xl font-semibold text-white mb-6">
+                 Sign In
+               </h1>
                <div className="flex flex-col gap-4">
-                 <input type="email" placeholder="Email" className="input-style" />
-                 <input type="password" placeholder="Password" className="input-style" />
-                 <button className="w-full bg-red-600 py-3 rounded-md text-white">Login</button>
+                 <input
+                   type="email"
+                   placeholder="Email"
+                   className="input-style"
+                 />
+                 <input
+                   type="password"
+                   placeholder="Password"
+                   className="input-style"
+                 />
+                 <button className="w-full bg-red-600 py-3 rounded-md text-white">
+                   Login
+                 </button>
                  <p className="text-sm text-white mt-6">
-                   First time using Netflix?{' '}
+                   First time using Netflix?{" "}
                    <span className="text-red-600 hover:underline cursor-pointer">
                      Create an account
                    </span>
@@ -89,6 +109,7 @@ In this section, we will build the authentication screen UI.
      ```
 
 2. **Style the Input Fields:**
+
    - Add the following CSS classes to style the input fields:
      ```javascript
      <input type="email" placeholder="Email" className="bg-[#333] rounded-md p-4 text-white placeholder:text-white/50 focus:outline-none" />
@@ -103,12 +124,14 @@ In this section, we will build the authentication screen UI.
 In this section, we will set up authentication using NextAuth and Prisma.
 
 1. **Install Required Packages:**
+
    - Run the following commands to install NextAuth and Prisma:
      ```bash
      npm install next-auth @prisma/client @next-auth/prisma-adapter
      ```
 
 2. **Set Up Prisma:**
+
    - Initialize Prisma in your project:
      ```bash
      npx prisma init
@@ -119,7 +142,9 @@ In this section, we will set up authentication using NextAuth and Prisma.
      ```
 
 3. **Create Prisma Schema:**
+
    - Define your data models in the `prisma/schema.prisma` file:
+
      ```prisma
      datasource db {
        provider = "mongodb"
@@ -186,32 +211,35 @@ In this section, we will set up authentication using NextAuth and Prisma.
      ```
 
 4. **Push Prisma Schema to MongoDB:**
+
    - Run the following command to push the schema to your MongoDB database:
      ```bash
      npx prisma db push
      ```
 
 5. **Set Up NextAuth:**
+
    - Create a new file `[...nextauth].ts` in the `pages/api/auth` directory and add the following code:
+
      ```typescript
-     import NextAuth from 'next-auth';
-     import Providers from 'next-auth/providers';
-     import { PrismaClient } from '@prisma/client';
-     import { compare } from 'bcryptjs';
-     import prisma from '../../../lib/prisma';
+     import NextAuth from "next-auth";
+     import Providers from "next-auth/providers";
+     import { PrismaClient } from "@prisma/client";
+     import { compare } from "bcryptjs";
+     import prisma from "../../../lib/prisma";
 
      export default NextAuth({
        providers: [
          Providers.Credentials({
-           id: 'credentials',
-           name: 'Credentials',
+           id: "credentials",
+           name: "Credentials",
            credentials: {
-             email: { label: 'Email', type: 'text' },
-             password: { label: 'Password', type: 'password' },
+             email: { label: "Email", type: "text" },
+             password: { label: "Password", type: "password" },
            },
            async authorize(credentials) {
              if (!credentials?.email || !credentials?.password) {
-               throw new Error('Email and password required');
+               throw new Error("Email and password required");
              }
 
              const user = await prisma.user.findUnique({
@@ -219,13 +247,16 @@ In this section, we will set up authentication using NextAuth and Prisma.
              });
 
              if (!user || !user.hashedPassword) {
-               throw new Error('Email does not exist');
+               throw new Error("Email does not exist");
              }
 
-             const isCorrectPassword = await compare(credentials.password, user.hashedPassword);
+             const isCorrectPassword = await compare(
+               credentials.password,
+               user.hashedPassword,
+             );
 
              if (!isCorrectPassword) {
-               throw new Error('Incorrect password');
+               throw new Error("Incorrect password");
              }
 
              return user;
@@ -242,29 +273,35 @@ In this section, we will set up authentication using NextAuth and Prisma.
        ],
        adapter: PrismaAdapter(prisma),
        session: {
-         strategy: 'jwt',
+         strategy: "jwt",
        },
        jwt: {
          secret: process.env.NEXTAUTH_JWT_SECRET,
        },
        secret: process.env.NEXTAUTH_SECRET,
        pages: {
-         signIn: '/auth',
+         signIn: "/auth",
        },
-       debug: process.env.NODE_ENV === 'development',
+       debug: process.env.NODE_ENV === "development",
      });
      ```
 
 6. **Create Authentication API Routes:**
-   - Create the following API routes for registration and login:
-     - `pages/api/register.ts`:
-       ```typescript
-       import { NextApiRequest, NextApiResponse } from 'next';
-       import bcrypt from 'bcryptjs';
-       import prisma from '../../../lib/prisma';
 
-       export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-         if (req.method !== 'POST') {
+   - Create the following API routes for registration and login:
+
+     - `pages/api/register.ts`:
+
+       ```typescript
+       import { NextApiRequest, NextApiResponse } from "next";
+       import bcrypt from "bcryptjs";
+       import prisma from "../../../lib/prisma";
+
+       export default async function handler(
+         req: NextApiRequest,
+         res: NextApiResponse,
+       ) {
+         if (req.method !== "POST") {
            return res.status(405).end();
          }
 
@@ -275,7 +312,7 @@ In this section, we will set up authentication using NextAuth and Prisma.
          });
 
          if (existingUser) {
-           return res.status(422).json({ error: 'Email taken' });
+           return res.status(422).json({ error: "Email taken" });
          }
 
          const hashedPassword = await bcrypt.hash(password, 12);
@@ -285,7 +322,7 @@ In this section, we will set up authentication using NextAuth and Prisma.
              email,
              name,
              hashedPassword,
-             image: '',
+             image: "",
              emailVerified: new Date(),
            },
          });
@@ -295,19 +332,23 @@ In this section, we will set up authentication using NextAuth and Prisma.
        ```
 
      - `pages/api/login.ts`:
-       ```typescript
-       import { NextApiRequest, NextApiResponse } from 'next';
-       import { getSession } from 'next-auth/react';
 
-       export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-         if (req.method !== 'POST') {
+       ```typescript
+       import { NextApiRequest, NextApiResponse } from "next";
+       import { getSession } from "next-auth/react";
+
+       export default async function handler(
+         req: NextApiRequest,
+         res: NextApiResponse,
+       ) {
+         if (req.method !== "POST") {
            return res.status(405).end();
          }
 
          const session = await getSession({ req });
 
          if (!session) {
-           return res.status(401).json({ error: 'Unauthorized' });
+           return res.status(401).json({ error: "Unauthorized" });
          }
 
          return res.status(200).json(session.user);
@@ -319,7 +360,9 @@ In this section, we will set up authentication using NextAuth and Prisma.
 In this section, we will build the navigation bar component.
 
 1. **Create the Navbar Component:**
+
    - Create a new file `Navbar.tsx` in the `components` directory and add the following code:
+
      ```typescript
      import React from 'react';
      import { useRouter } from 'next/router';
@@ -393,7 +436,9 @@ In this section, we will build the navigation bar component.
      ```
 
 2. **Create the NavbarItem Component:**
+
    - Create a new file `NavbarItem.tsx` in the `components` directory and add the following code:
+
      ```typescript
      import React from 'react';
 
@@ -413,7 +458,9 @@ In this section, we will build the navigation bar component.
      ```
 
 3. **Create the MobileMenu Component:**
+
    - Create a new file `MobileMenu.tsx` in the `components` directory and add the following code:
+
      ```typescript
      import React from 'react';
 
@@ -440,7 +487,9 @@ In this section, we will build the navigation bar component.
      ```
 
 4. **Create the AccountMenu Component:**
+
    - Create a new file `AccountMenu.tsx` in the `components` directory and add the following code:
+
      ```typescript
      import React from 'react';
      import { signOut } from 'next-auth/react';
@@ -470,7 +519,9 @@ In this section, we will build the navigation bar component.
      ```
 
 5. **Integrate the Navbar Component:**
+
    - Update the `pages/index.tsx` file to include the Navbar component:
+
      ```typescript
      import React from 'react';
      import Navbar from '../components/Navbar';
@@ -492,7 +543,9 @@ In this section, we will build the navigation bar component.
 In this section, we will build the billboard component that displays a random movie.
 
 1. **Create the Billboard Component:**
+
    - Create a new file `Billboard.tsx` in the `components` directory and add the following code:
+
      ```typescript
      import React from 'react';
      import useBillboard from '../hooks/useBillboard';
@@ -538,10 +591,12 @@ In this section, we will build the billboard component that displays a random mo
      ```
 
 2. **Create the useBillboard Hook:**
+
    - Create a new file `useBillboard.ts` in the `hooks` directory and add the following code:
+
      ```typescript
-     import useSWR from 'swr';
-     import fetcher from '../lib/fetcher';
+     import useSWR from "swr";
+     import fetcher from "../lib/fetcher";
 
      const useBillboard = () => {
        const { data, error, isLoading } = useSWR(`/api/random`, fetcher, {
@@ -557,13 +612,18 @@ In this section, we will build the billboard component that displays a random mo
      ```
 
 3. **Create the Random Movie API Route:**
-   - Create a new file `random.ts` in the `pages/api` directory and add the following code:
-     ```typescript
-     import { NextApiRequest, NextApiResponse } from 'next';
-     import prisma from '../../../lib/prisma';
 
-     export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-       if (req.method !== 'GET') {
+   - Create a new file `random.ts` in the `pages/api` directory and add the following code:
+
+     ```typescript
+     import { NextApiRequest, NextApiResponse } from "next";
+     import prisma from "../../../lib/prisma";
+
+     export default async function handler(
+       req: NextApiRequest,
+       res: NextApiResponse,
+     ) {
+       if (req.method !== "GET") {
          return res.status(405).end();
        }
 
@@ -579,7 +639,9 @@ In this section, we will build the billboard component that displays a random mo
      ```
 
 4. **Integrate the Billboard Component:**
+
    - Update the `pages/index.tsx` file to include the Billboard component:
+
      ```typescript
      import React from 'react';
      import Navbar from '../components/Navbar';
@@ -602,7 +664,9 @@ In this section, we will build the billboard component that displays a random mo
 In this section, we will build the movie list component that displays a list of trending movies.
 
 1. **Create the MovieList Component:**
+
    - Create a new file `MovieList.tsx` in the `components` directory and add the following code:
+
      ```typescript
      import React from 'react';
      import MovieCard from './MovieCard';
@@ -632,7 +696,9 @@ In this section, we will build the movie list component that displays a list of 
      ```
 
 2. **Create the MovieCard Component:**
+
    - Create a new file `MovieCard.tsx` in the `components` directory and add the following code:
+
      ```typescript
      import React from 'react';
      import { BsFillPlayFill } from 'react-icons/bs';
@@ -686,13 +752,15 @@ In this section, we will build the movie list component that displays a list of 
      ```
 
 3. **Create the useMovies Hook:**
+
    - Create a new file `useMovies.ts` in the `hooks` directory and add the following code:
+
      ```typescript
-     import useSWR from 'swr';
-     import fetcher from '../lib/fetcher';
+     import useSWR from "swr";
+     import fetcher from "../lib/fetcher";
 
      const useMovies = () => {
-       const { data, error, isLoading } = useSWR('/api/movies', fetcher, {
+       const { data, error, isLoading } = useSWR("/api/movies", fetcher, {
          revalidateIfStale: false,
          revalidateOnFocus: false,
          revalidateOnReconnect: false,
@@ -705,13 +773,18 @@ In this section, we will build the movie list component that displays a list of 
      ```
 
 4. **Create the Movies API Route:**
-   - Create a new file `index.ts` in the `pages/api/movies` directory and add the following code:
-     ```typescript
-     import { NextApiRequest, NextApiResponse } from 'next';
-     import prisma from '../../../lib/prisma';
 
-     export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-       if (req.method !== 'GET') {
+   - Create a new file `index.ts` in the `pages/api/movies` directory and add the following code:
+
+     ```typescript
+     import { NextApiRequest, NextApiResponse } from "next";
+     import prisma from "../../../lib/prisma";
+
+     export default async function handler(
+       req: NextApiRequest,
+       res: NextApiResponse,
+     ) {
+       if (req.method !== "GET") {
          return res.status(405).end();
        }
 
@@ -722,7 +795,9 @@ In this section, we will build the movie list component that displays a list of 
      ```
 
 5. **Integrate the MovieList Component:**
+
    - Update the `pages/index.tsx` file to include the MovieList component:
+
      ```typescript
      import React from 'react';
      import Navbar from '../components/Navbar';
@@ -752,7 +827,9 @@ In this section, we will build the movie list component that displays a list of 
 In this section, we will implement the favorites and my list functionality.
 
 1. **Create the FavoriteButton Component:**
+
    - Create a new file `FavoriteButton.tsx` in the `components` directory and add the following code:
+
      ```typescript
      import React from 'react';
      import axios from 'axios';
@@ -810,17 +887,23 @@ In this section, we will implement the favorites and my list functionality.
      ```
 
 2. **Create the useFavorites Hook:**
+
    - Create a new file `useFavorites.ts` in the `hooks` directory and add the following code:
+
      ```typescript
-     import useSWR from 'swr';
-     import fetcher from '../lib/fetcher';
+     import useSWR from "swr";
+     import fetcher from "../lib/fetcher";
 
      const useFavorites = () => {
-       const { data, error, isLoading, mutate } = useSWR('/api/favorites', fetcher, {
-         revalidateIfStale: false,
-         revalidateOnFocus: false,
-         revalidateOnReconnect: false,
-       });
+       const { data, error, isLoading, mutate } = useSWR(
+         "/api/favorites",
+         fetcher,
+         {
+           revalidateIfStale: false,
+           revalidateOnFocus: false,
+           revalidateOnReconnect: false,
+         },
+       );
 
        return { data, error, isLoading, mutate };
      };
@@ -829,14 +912,19 @@ In this section, we will implement the favorites and my list functionality.
      ```
 
 3. **Create the Favorites API Route:**
-   - Create a new file `favorites.ts` in the `pages/api` directory and add the following code:
-     ```typescript
-     import { NextApiRequest, NextApiResponse } from 'next';
-     import prisma from '../../../lib/prisma';
-     import serverAuth from '../../../lib/serverAuth';
 
-     export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-       if (req.method !== 'GET') {
+   - Create a new file `favorites.ts` in the `pages/api` directory and add the following code:
+
+     ```typescript
+     import { NextApiRequest, NextApiResponse } from "next";
+     import prisma from "../../../lib/prisma";
+     import serverAuth from "../../../lib/serverAuth";
+
+     export default async function handler(
+       req: NextApiRequest,
+       res: NextApiResponse,
+     ) {
+       if (req.method !== "GET") {
          return res.status(405).end();
        }
 
@@ -860,14 +948,19 @@ In this section, we will implement the favorites and my list functionality.
      ```
 
 4. **Create the Favorite API Route:**
-   - Create a new file `favorite.ts` in the `pages/api` directory and add the following code:
-     ```typescript
-     import { NextApiRequest, NextApiResponse } from 'next';
-     import prisma from '../../../lib/prisma';
-     import serverAuth from '../../../lib/serverAuth';
 
-     export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-       if (req.method === 'POST') {
+   - Create a new file `favorite.ts` in the `pages/api` directory and add the following code:
+
+     ```typescript
+     import { NextApiRequest, NextApiResponse } from "next";
+     import prisma from "../../../lib/prisma";
+     import serverAuth from "../../../lib/serverAuth";
+
+     export default async function handler(
+       req: NextApiRequest,
+       res: NextApiResponse,
+     ) {
+       if (req.method === "POST") {
          try {
            const { currentUser } = await serverAuth(req);
            const { movieId } = req.body;
@@ -877,7 +970,7 @@ In this section, we will implement the favorites and my list functionality.
            });
 
            if (!existingMovie) {
-             throw new Error('Invalid ID');
+             throw new Error("Invalid ID");
            }
 
            const user = await prisma.user.update({
@@ -894,7 +987,7 @@ In this section, we will implement the favorites and my list functionality.
            console.log(error);
            return res.status(400).end();
          }
-       } else if (req.method === 'DELETE') {
+       } else if (req.method === "DELETE") {
          try {
            const { currentUser } = await serverAuth(req);
            const { movieId } = req.body;
@@ -904,10 +997,12 @@ In this section, we will implement the favorites and my list functionality.
            });
 
            if (!existingMovie) {
-             throw new Error('Invalid ID');
+             throw new Error("Invalid ID");
            }
 
-           const updatedFavoriteIds = currentUser.favoriteIds.filter((id) => id !== movieId);
+           const updatedFavoriteIds = currentUser.favoriteIds.filter(
+             (id) => id !== movieId,
+           );
 
            const user = await prisma.user.update({
              where: { email: currentUser.email },
@@ -928,7 +1023,9 @@ In this section, we will implement the favorites and my list functionality.
      ```
 
 5. **Integrate the Favorites Functionality:**
+
    - Update the `pages/index.tsx` file to include the favorites movie list:
+
      ```typescript
      import React from 'react';
      import Navbar from '../components/Navbar';
@@ -961,7 +1058,9 @@ In this section, we will implement the favorites and my list functionality.
 In this section, we will build the info modal component that displays detailed information about a movie.
 
 1. **Create the InfoModal Component:**
+
    - Create a new file `InfoModal.tsx` in the `components` directory and add the following code:
+
      ```typescript
      import React, { useCallback, useEffect, useState } from 'react';
      import { AiOutlineClose } from 'react-icons/ai';
@@ -1032,9 +1131,11 @@ In this section, we will build the info modal component that displays detailed i
      ```
 
 2. **Create the useInfoModal Hook:**
+
    - Create a new file `useInfoModal.ts` in the `hooks` directory and add the following code:
+
      ```typescript
-     import create from 'zustand';
+     import create from "zustand";
 
      interface ModalStore {
        movieId?: string;
@@ -1054,7 +1155,9 @@ In this section, we will build the info modal component that displays detailed i
      ```
 
 3. **Integrate the InfoModal Component:**
+
    - Update the `pages/index.tsx` file to include the InfoModal component:
+
      ```typescript
      import React from 'react';
      import Navbar from '../components/Navbar';
@@ -1087,7 +1190,9 @@ In this section, we will build the info modal component that displays detailed i
      ```
 
 4. **Update the Billboard Component:**
+
    - Update the `Billboard.tsx` file to trigger the info modal:
+
      ```typescript
      import React from 'react';
      import useBillboard from '../hooks/useBillboard';
@@ -1146,7 +1251,9 @@ In this section, we will build the info modal component that displays detailed i
 In this section, we will build the play button and video player components.
 
 1. **Create the PlayButton Component:**
+
    - Create a new file `PlayButton.tsx` in the `components` directory and add the following code:
+
      ```typescript
      import React from 'react';
      import { BsFillPlayFill } from 'react-icons/bs';
@@ -1174,7 +1281,9 @@ In this section, we will build the play button and video player components.
      ```
 
 2. **Create the Watch Page:**
+
    - Create a new file `[movieId].tsx` in the `pages/watch` directory and add the following code:
+
      ```typescript
      import React from 'react';
      import { useRouter } from 'next/router';
@@ -1219,15 +1328,17 @@ In this section, we will build the play button and video player components.
      ```
 
 3. **Create the useMovie Hook:**
+
    - Create a new file `useMovie.ts` in the `hooks` directory and add the following code:
+
      ```typescript
-     import useSWR from 'swr';
-     import fetcher from '../lib/fetcher';
+     import useSWR from "swr";
+     import fetcher from "../lib/fetcher";
 
      const useMovie = (id?: string) => {
        const { data, error, isLoading } = useSWR(
          id ? `/api/movies/${id}` : null,
-         fetcher
+         fetcher,
        );
 
        return { data, error, isLoading };
@@ -1237,24 +1348,29 @@ In this section, we will build the play button and video player components.
      ```
 
 4. **Create the Movie API Route:**
-   - Create a new file `[movieId].ts` in the `pages/api/movies` directory and add the following code:
-     ```typescript
-     import { NextApiRequest, NextApiResponse } from 'next';
-     import prisma from '../../../lib/prisma';
 
-     export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-       if (req.method !== 'GET') {
+   - Create a new file `[movieId].ts` in the `pages/api/movies` directory and add the following code:
+
+     ```typescript
+     import { NextApiRequest, NextApiResponse } from "next";
+     import prisma from "../../../lib/prisma";
+
+     export default async function handler(
+       req: NextApiRequest,
+       res: NextApiResponse,
+     ) {
+       if (req.method !== "GET") {
          return res.status(405).end();
        }
 
        const movieId = req.query.movieId as string;
 
-       if (typeof movieId !== 'string') {
-         return res.status(400).json({ error: 'Invalid ID' });
+       if (typeof movieId !== "string") {
+         return res.status(400).json({ error: "Invalid ID" });
        }
 
        if (!movieId) {
-         return res.status(400).json({ error: 'ID missing' });
+         return res.status(400).json({ error: "ID missing" });
        }
 
        const movie = await prisma.movie.findUnique({
@@ -1262,7 +1378,7 @@ In this section, we will build the play button and video player components.
        });
 
        if (!movie) {
-         return res.status(400).json({ error: 'Invalid ID' });
+         return res.status(400).json({ error: "Invalid ID" });
        }
 
        return res.status(200).json(movie);
@@ -1274,9 +1390,11 @@ In this section, we will build the play button and video player components.
 In this section, we will deploy the application to Vercel.
 
 1. **Create a GitHub Repository:**
+
    - Create a new repository on GitHub and push your code to the repository.
 
 2. **Set Up Vercel:**
+
    - Go to the Vercel dashboard and create a new project.
    - Connect your GitHub repository to Vercel.
    - Add the following environment variables in the Vercel dashboard:

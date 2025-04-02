@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import Link from "next/link";
 
 export default function Navbar() {
   return (
@@ -7,7 +7,7 @@ export default function Navbar() {
         <Link href="/" className="text-white text-2xl font-bold">
           MyFlix
         </Link>
-        
+
         <div className="flex space-x-6">
           <Link href="/" className="text-gray-300 hover:text-white">
             Home
@@ -19,7 +19,7 @@ export default function Navbar() {
             TV Shows
           </Link>
         </div>
-        
+
         <div>
           <button className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded">
             Sign In
