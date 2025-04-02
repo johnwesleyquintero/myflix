@@ -1,4 +1,4 @@
-## Myflix
+![Logo](public/logo.svg)
 
 ### Introduction
 

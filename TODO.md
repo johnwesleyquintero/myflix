@@ -6,6 +6,17 @@
 | --- | ------------ | ----------------------------------------- | ------- | -------- |
 | 1   | Setup        | Initialize Next.js project with TypeScript | Done        | Critical |
 | 2   | Setup        | Install and configure Tailwind CSS        | Done      | High     |
+| 3   | Setup        | Set up development server                | Done     | High     |
+
+## Pending Tasks
+
+| ID  | Category     | Description                               | Status  | Priority |
+| --- | ------------ | ----------------------------------------- | ------- | -------- |
+| 3   | Setup        | Configure NextAuth authentication         | Todo      | Critical |
+| 4   | Setup        | Set up MongoDB connection with Prisma     | Todo      | High     |
+| 5   | Feature      | Implement video player component          | Todo      | High     |
+| 6   | Feature      | Create movie/show browsing interface      | Todo      | Medium   |
+| 7   | Feature      | Implement user profile management         | Todo      | Medium   |
 
 
 ## New Tasks
@@ -15,7 +26,6 @@
 | 11   | Setup        | Set up public as path for favicon and logo default source. `public\logo.svg`, `public\favicon.ico` |        | High     |
 | 1   | Setup        | Initialize Next.js project with TypeScript |         | Critical |
 | 2   | Setup        | Install and configure Tailwind CSS        |         | High     |
-| 3   | Setup        | Set up development server                | Done     | High     |
 | 4   | UI           | Build authentication screen UI           |         | High     |
 | 5   | Auth         | Set up NextAuth and Prisma               |         | Critical |
 | 6   | Database     | Configure MongoDB connection             |         | Critical |
