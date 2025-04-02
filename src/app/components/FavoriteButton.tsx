@@ -1,5 +1,4 @@
 import React from 'react';
-import axios from 'axios';
 import { useCallback } from 'react';
 import { AiOutlinePlus, AiOutlineCheck } from 'react-icons/ai';
 import useCurrentUser from '../hooks/useCurrentUser';
