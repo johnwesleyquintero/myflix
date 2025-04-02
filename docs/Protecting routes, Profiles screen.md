@@ -1,4 +1,4 @@
-# Full-Stack Netflix Clone Tutorial: Authentication Module
+# Securing routes and implementing profile management.
 
 1.  **Understand the Goal:** The user wants to convert a video tutorial transcript about protecting routes and creating a profiles screen in a Next.js application (likely using NextAuth.js and Prisma) into a structured Markdown document. This document should be suitable for tutorials, documentation, and easily convertible to PDF.
 
