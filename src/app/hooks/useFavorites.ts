@@ -29,3 +29,11 @@ export default function useFavorites() {
     mutate: () => {},
   };
 }
+
+import { useCallback } from 'react';
+
+export default function useFavorites() {
+  return {
+    mutate: () => {},
+  };
+}
