@@ -2,7 +2,7 @@
 
 ### Introduction
 
-Hello everyone, and welcome to this tutorial on building a full-stack web application. In this tutorial, we will create a powerful Netflix clone using some of the latest tech trends. We will be using React for the frontend, Next.js for server-side rendering, Tailwind CSS for styling, Prisma as our data abstraction layer, MongoDB for storage, NextAuth for authentication, and Vercel for deployment. Additionally, we will use TypeScript and ensure the entire website is fully responsive across all devices.
+This is a roadmap document on building a full-stack web application. In this project, we will create a powerful Netflix clone using some of the latest tech trends. We will be using React for the frontend, Next.js for server-side rendering, Tailwind CSS for styling, Prisma as our data abstraction layer, MongoDB for storage, NextAuth for authentication, and Vercel for deployment. Additionally, we will use TypeScript and ensure the entire website is fully responsive across all devices.
 
 ### Environment Setup
 
