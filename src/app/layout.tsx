@@ -1,11 +1,14 @@
 import type { Metadata } from "next";
 
 import Image from "next/image";
-import { GeistSans, GeistMono } from "geist/font";
+import { Inter } from 'next/font/google';
 import "./globals.css";
 
-const geistSans = GeistSans;
-const geistMono = GeistMono;
+const inter = Inter({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-inter'
+});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -23,7 +26,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${inter.variable} antialiased font-sans`}
       >
         <Image
           src="/logo.svg"
