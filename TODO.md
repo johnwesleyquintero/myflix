@@ -36,13 +36,13 @@
 
 ## New Tasks
 
-| ID  | Category   | Description                                                                                        | Status | Priority |
-| --- | ---------- | -------------------------------------------------------------------------------------------------- | ------ | -------- |
-| 11  | Setup      | Set up public as path for favicon and logo default source. `public\logo.svg`, `public\favicon.ico` |        | High     |
-| 4   | UI         | Build authentication screen UI                                                                     |        | High     |
-| 5   | Auth       | Set up NextAuth and Prisma                                                                         |        | Critical |
+| ID  | Category   | Description                                                                                        | Status      | Priority |
+| --- | ---------- | -------------------------------------------------------------------------------------------------- | ----------- | -------- |
+| 11  | Setup      | Set up public as path for favicon and logo default source. `public\logo.svg`, `public\favicon.ico` |             | High     |
+| 4   | UI         | Build authentication screen UI                                                                     |             | High     |
+| 5   | Auth       | Set up NextAuth and Prisma                                                                         |             | Critical |
 | 6   | Database   | Configure MongoDB connection                                                                       | In Progress | Critical |
-| 7   | UI         | Create Navbar component                                                                            |        | Medium   |
-| 8   | UI         | Build Billboard component                                                                          |        | Medium   |
-| 9   | UI         | Create Movie List component                                                                        |        | Medium   |
-| 10  | Deployment | Configure Vercel deployment                                                                        |        | Low      |
+| 7   | UI         | Create Navbar component                                                                            |             | Medium   |
+| 8   | UI         | Build Billboard component                                                                          |             | Medium   |
+| 9   | UI         | Create Movie List component                                                                        |             | Medium   |
+| 10  | Deployment | Configure Vercel deployment                                                                        |             | Low      |
