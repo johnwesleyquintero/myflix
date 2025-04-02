@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@auth/prisma-adapter": "^2.8.0",
+    "@geist-ui/core": "^2.3.8",
     "@prisma/client": "^6.5.0",
     "mongodb": "^6.15.0",
     "next": "15.2.4",

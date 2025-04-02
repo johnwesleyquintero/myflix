@@ -1,16 +1,15 @@
 import type { Metadata } from "next";
-import { Geist_Sans as Geist, Geist_Mono } from "next/font/google";
+import { Inter } from "next/font/google";
+const inter = Inter({ subsets: ['latin'] });
 import Image from 'next/image';
 import "./globals.css";
 
 const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+  variable: "--font-geist-sans"
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+const geistMono = GeistMono({
+  variable: "--font-geist-mono"
 });
 
 export const metadata: Metadata = {
@@ -21,8 +20,6 @@ export const metadata: Metadata = {
   },
 };
 
-import { GeistSans, GeistMono } from 'geist/font';
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -31,7 +28,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${GeistSans.variable} ${GeistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Image src="/logo.svg" alt="Logo" className="hidden" width={100} height={100} />
         {children}
