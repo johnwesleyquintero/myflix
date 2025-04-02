@@ -1,6 +1,6 @@
 ![Logo](public/logo.svg)
 
-***
+---
 
 MyFlix is a full-stack web application that allows users to browse, search, and watch movies and TV shows. It is built using React, Next.js, TypeScript, Tailwind CSS, MongoDB, Prisma, NextAuth, and Vercel.
 
@@ -50,25 +50,24 @@ npm run dev
 
 ## Implementation
 
-| Implementation Type                      | Category          | Description                                                                 | Documentation                       |
-|------------------------------------------|-------------------|-----------------------------------------------------------------------------|-------------------------------------|
-| Environment setup                       | Setup             | Initial setup of the development environment.                              | docs/Environment setup.md          |
-| Auth Screen UI                          | Authentication    | Design and implementation of the authentication screen UI.                 | docs/Auth Screen UI.md             |
-| NextAuth, Prisma, Mongo Setup          | Authentication    | Setup of authentication and database integration.                         | docs/NextAuth, Prisma, Mongo Setup.md |
-| Google and Github OAuth                | Authentication    | Implementation of OAuth for Google and Github.                            | docs/Google and Github OAuth.md    |
-| Protecting routes, Profiles screen      | Authentication    | Securing routes and implementing profile management.                     | docs/Protecting routes, Profiles screen.md |
-| Navbar Component                        | UI Components     | Implementation of the navigation bar component.                          | docs/Navbar Component.md           |
-| Billboard Component, Random Movie Endpoint | UI Components     | Displaying a random movie on the billboard component.                    | docs/Billboard Component, Random Movie Endpoint.md |
-| Movie List & Movie Card Components, Movies Endpoint, Cool hover effect | UI Components | Displaying a list of movies with hover effects and movie card components. | docs/Movie List & Movie Card Components, Movies Endpoint, Cool hover effect.md |
-| Favorites / My List functionality      | Features          | Implementing the functionality to add movies to favorites or a personal list. | docs/Favorites / My List functionality.md |
-| Play Button, Video Player, Single Movie Endpoint | Features   | Implementing video playback functionality for a single movie.            | docs/Play Button, Video Player, Single Movie Endpoint.md |
-| Info Modal Component                   | UI Components     | Displaying additional information in a modal component.                  | docs/Info Modal Component.md       |
-| Vercel Deployment                       | Deployment        | Deploying the application using Vercel.                                   | docs/Vercel Deployment.md          |
+| Implementation Type                                                    | Category       | Description                                                                   | Documentation                                                                  |
+| ---------------------------------------------------------------------- | -------------- | ----------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
+| Environment setup                                                      | Setup          | Initial setup of the development environment.                                 | docs/Environment setup.md                                                      |
+| Auth Screen UI                                                         | Authentication | Design and implementation of the authentication screen UI.                    | docs/Auth Screen UI.md                                                         |
+| NextAuth, Prisma, Mongo Setup                                          | Authentication | Setup of authentication and database integration.                             | docs/NextAuth, Prisma, Mongo Setup.md                                          |
+| Google and Github OAuth                                                | Authentication | Implementation of OAuth for Google and Github.                                | docs/Google and Github OAuth.md                                                |
+| Protecting routes, Profiles screen                                     | Authentication | Securing routes and implementing profile management.                          | docs/Protecting routes, Profiles screen.md                                     |
+| Navbar Component                                                       | UI Components  | Implementation of the navigation bar component.                               | docs/Navbar Component.md                                                       |
+| Billboard Component, Random Movie Endpoint                             | UI Components  | Displaying a random movie on the billboard component.                         | docs/Billboard Component, Random Movie Endpoint.md                             |
+| Movie List & Movie Card Components, Movies Endpoint, Cool hover effect | UI Components  | Displaying a list of movies with hover effects and movie card components.     | docs/Movie List & Movie Card Components, Movies Endpoint, Cool hover effect.md |
+| Favorites / My List functionality                                      | Features       | Implementing the functionality to add movies to favorites or a personal list. | docs/Favorites / My List functionality.md                                      |
+| Play Button, Video Player, Single Movie Endpoint                       | Features       | Implementing video playback functionality for a single movie.                 | docs/Play Button, Video Player, Single Movie Endpoint.md                       |
+| Info Modal Component                                                   | UI Components  | Displaying additional information in a modal component.                       | docs/Info Modal Component.md                                                   |
+| Vercel Deployment                                                      | Deployment     | Deploying the application using Vercel.                                       | docs/Vercel Deployment.md                                                      |
 
-***
+---
 
-***This table categorizes each implementation type under broader headings like Setup, Authentication, UI Components, Features, and Deployment. You can further refine the descriptions and add relevant documentation links as needed.***
-
+**_This table categorizes each implementation type under broader headings like Setup, Authentication, UI Components, Features, and Deployment. You can further refine the descriptions and add relevant documentation links as needed._**
 
 ## Contributing
 

@@ -3,63 +3,64 @@
 1.  **Understand the Goal:** The user wants to convert a video tutorial transcript about protecting routes and creating a profiles screen in a Next.js application (likely using NextAuth.js and Prisma) into a structured Markdown document. This document should be suitable for tutorials, documentation, and easily convertible to PDF.
 
 2.  **Identify Key Topics:** I'll scan the transcript for major sections or concepts. The title itself ("Protecting routes, Profiles screen") gives a big clue. As I read through, I see:
-    *   Protecting API routes using a server-side helper (`serverAuth`).
-    *   Creating a new API endpoint (`/api/current`) to fetch the logged-in user.
-    *   Creating a custom hook (`useCurrentUser`) with SWR for client-side data fetching.
-    *   Protecting client-side pages (`getServerSideProps`).
-    *   Handling potential MongoDB connection issues.
-    *   Creating the UI for the Profiles screen.
-    *   Fetching user data on the Profiles screen.
-    *   Redirecting users upon profile selection.
+
+    - Protecting API routes using a server-side helper (`serverAuth`).
+    - Creating a new API endpoint (`/api/current`) to fetch the logged-in user.
+    - Creating a custom hook (`useCurrentUser`) with SWR for client-side data fetching.
+    - Protecting client-side pages (`getServerSideProps`).
+    - Handling potential MongoDB connection issues.
+    - Creating the UI for the Profiles screen.
+    - Fetching user data on the Profiles screen.
+    - Redirecting users upon profile selection.
 
 3.  **Structure the Document:** Based on the key topics, I'll outline the document structure using Markdown headings:
 
-    *   `# Protecting Routes and Creating the Profiles Screen` (Main Title)
-    *   `## Introduction` (Brief overview)
-    *   `## Protecting API Routes`
-        *   `### Creating the `serverAuth` Utility` (Code and explanation)
-    *   `## Creating the `/api/current` Endpoint`
-        *   `### Implementation` (Code and explanation)
-    *   `## Client-Side Data Fetching with SWR`
-        *   `### Creating the `fetcher` Utility` (Code and explanation)
-        *   `### Installing SWR` (Command)
-        *   `### Creating the `useCurrentUser` Hook` (Code and explanation)
-    *   `## Protecting Client-Side Pages`
-        *   `### Implementing `getServerSideProps` on the Home Page` (Code and explanation)
-        *   `### Adding a Logout Button` (Code snippet)
-        *   `### Troubleshooting: MongoDB Connection Issues` (Explanation and solution)
-        *   `### Fetching and Displaying User Data on the Home Page` (Code and explanation)
-    *   `## Creating the Profiles Screen`
-        *   `### Creating the Profiles Page Component` (Basic structure)
-        *   `### Protecting the Profiles Route` (Code and explanation)
-        *   `### Updating Login Redirect Logic` (Code changes in `auth.tsx`)
-        *   `### Adding Default Profile Image` (Instructions)
-        *   `### Building the Profiles UI` (Code and explanation for styling)
-        *   `### Displaying User Information` (Code and explanation)
-        *   `### Adding Navigation on Profile Click` (Code and explanation)
-    *   `## Conclusion` (Summary)
+    - `# Protecting Routes and Creating the Profiles Screen` (Main Title)
+    - `## Introduction` (Brief overview)
+    - `## Protecting API Routes`
+      - `### Creating the `serverAuth` Utility` (Code and explanation)
+    - `## Creating the `/api/current` Endpoint`
+      - `### Implementation` (Code and explanation)
+    - `## Client-Side Data Fetching with SWR`
+      - `### Creating the `fetcher` Utility` (Code and explanation)
+      - `### Installing SWR` (Command)
+      - `### Creating the `useCurrentUser` Hook` (Code and explanation)
+    - `## Protecting Client-Side Pages`
+      - `### Implementing `getServerSideProps` on the Home Page` (Code and explanation)
+      - `### Adding a Logout Button` (Code snippet)
+      - `### Troubleshooting: MongoDB Connection Issues` (Explanation and solution)
+      - `### Fetching and Displaying User Data on the Home Page` (Code and explanation)
+    - `## Creating the Profiles Screen`
+      - `### Creating the Profiles Page Component` (Basic structure)
+      - `### Protecting the Profiles Route` (Code and explanation)
+      - `### Updating Login Redirect Logic` (Code changes in `auth.tsx`)
+      - `### Adding Default Profile Image` (Instructions)
+      - `### Building the Profiles UI` (Code and explanation for styling)
+      - `### Displaying User Information` (Code and explanation)
+      - `### Adding Navigation on Profile Click` (Code and explanation)
+    - `## Conclusion` (Summary)
 
 4.  **Flesh out Each Section:** Now, I'll go through the transcript chronologically, extracting relevant information, code snippets, and explanations for each section defined in the structure.
 
-    *   **Timestamps:** Ignore the timestamps (e.g., `1:33:40`). They are irrelevant for the final document.
-    *   **Code Extraction:** Identify code blocks. Pay attention to file paths mentioned (e.g., `lib/serverAuth.ts`, `pages/api/current.ts`, `lib/fetcher.ts`, `hooks/useCurrentUser.ts`, `pages/index.tsx`, `pages/profiles.tsx`). Use triple backticks with the appropriate language (`typescript`, `tsx`, `bash`).
-    *   **Explanations:** Extract the speaker's explanations for *why* certain code is being written. Rephrase informal language ("all right so now I want to show you...") into more formal tutorial language ("This section explains how to protect...").
-    *   **Inline Code:** Use single backticks for function names (`serverAuth`, `getSession`), filenames (`serverAuth.ts`), variable names (`currentUser`, `session`), package names (`next-auth/react`, `swr`), commands (`npm install swr`), API routes (`/api/current`), CSS classes (`text-white`), etc.
-    *   **Steps/Instructions:** Use numbered or bulleted lists for sequential steps (like creating files, installing packages, adding code).
-    *   **Imports:** Clearly show necessary import statements within code blocks. Pay attention to path aliases (`@/lib/serverAuth` vs. `../../lib/serverAuth`) and mention the alternative if the speaker does.
-    *   **Troubleshooting:** The section about MongoDB network access is important. Dedicate a subsection to it.
-    *   **UI Styling:** When describing the Profiles UI, mention the purpose of key CSS classes (like `group`, `group-hover`).
-    *   **Clarity and Conciseness:** Remove filler words, repetitions, and overly conversational phrases. Ensure the flow is logical.
-    *   **PDF Compatibility:** Stick to standard Markdown features. Avoid complex HTML embeds or highly customized elements that might not render well in PDF. Ensure code blocks are clearly delineated.
+    - **Timestamps:** Ignore the timestamps (e.g., `1:33:40`). They are irrelevant for the final document.
+    - **Code Extraction:** Identify code blocks. Pay attention to file paths mentioned (e.g., `lib/serverAuth.ts`, `pages/api/current.ts`, `lib/fetcher.ts`, `hooks/useCurrentUser.ts`, `pages/index.tsx`, `pages/profiles.tsx`). Use triple backticks with the appropriate language (`typescript`, `tsx`, `bash`).
+    - **Explanations:** Extract the speaker's explanations for _why_ certain code is being written. Rephrase informal language ("all right so now I want to show you...") into more formal tutorial language ("This section explains how to protect...").
+    - **Inline Code:** Use single backticks for function names (`serverAuth`, `getSession`), filenames (`serverAuth.ts`), variable names (`currentUser`, `session`), package names (`next-auth/react`, `swr`), commands (`npm install swr`), API routes (`/api/current`), CSS classes (`text-white`), etc.
+    - **Steps/Instructions:** Use numbered or bulleted lists for sequential steps (like creating files, installing packages, adding code).
+    - **Imports:** Clearly show necessary import statements within code blocks. Pay attention to path aliases (`@/lib/serverAuth` vs. `../../lib/serverAuth`) and mention the alternative if the speaker does.
+    - **Troubleshooting:** The section about MongoDB network access is important. Dedicate a subsection to it.
+    - **UI Styling:** When describing the Profiles UI, mention the purpose of key CSS classes (like `group`, `group-hover`).
+    - **Clarity and Conciseness:** Remove filler words, repetitions, and overly conversational phrases. Ensure the flow is logical.
+    - **PDF Compatibility:** Stick to standard Markdown features. Avoid complex HTML embeds or highly customized elements that might not render well in PDF. Ensure code blocks are clearly delineated.
 
 5.  **Review and Refine:** Read through the generated Markdown.
-    *   Check for accuracy: Does the code match the description? Are the file paths correct?
-    *   Check for clarity: Is the language easy to understand? Is the structure logical?
-    *   Check for completeness: Have all the key steps from the transcript been included?
-    *   Check formatting: Are headings, lists, code blocks, and inline code used correctly and consistently?
-    *   Check PDF readiness: Does it look like a clean, well-structured document?
+    - Check for accuracy: Does the code match the description? Are the file paths correct?
+    - Check for clarity: Is the language easy to understand? Is the structure logical?
+    - Check for completeness: Have all the key steps from the transcript been included?
+    - Check formatting: Are headings, lists, code blocks, and inline code used correctly and consistently?
+    - Check PDF readiness: Does it look like a clean, well-structured document?
 
-**(Self-Correction Example during the process):** Initially, I might just dump all the code into one big block. Then, during refinement, I'd realize it's better to break it down by file (`serverAuth.ts`, `current.ts`, etc.) with explanations preceding each block, matching the tutorial's flow. I also need to make sure I explicitly mention *where* each file should be created (e.g., "Create a new file `serverAuth.ts` inside the `lib` directory"). I also noticed the speaker mentions path aliases (`@/lib/...`) versus relative paths (`../../lib/...`) and incorporated that explanation. The MongoDB troubleshooting part was a distinct segment in the transcript and needs its own clear section in the Markdown.Okay, here is the structured Markdown document converted from the provided transcript. It follows the requested guidelines for tutorials, documentation, and PDF compatibility.
+**(Self-Correction Example during the process):** Initially, I might just dump all the code into one big block. Then, during refinement, I'd realize it's better to break it down by file (`serverAuth.ts`, `current.ts`, etc.) with explanations preceding each block, matching the tutorial's flow. I also need to make sure I explicitly mention _where_ each file should be created (e.g., "Create a new file `serverAuth.ts` inside the `lib` directory"). I also noticed the speaker mentions path aliases (`@/lib/...`) versus relative paths (`../../lib/...`) and incorporated that explanation. The MongoDB troubleshooting part was a distinct segment in the transcript and needs its own clear section in the Markdown.Okay, here is the structured Markdown document converted from the provided transcript. It follows the requested guidelines for tutorials, documentation, and PDF compatibility.
 
 ---
 
@@ -84,15 +85,16 @@ To avoid repeating authentication logic in every API route, we'll create a reusa
 ### Creating the `serverAuth` Utility
 
 1.  **Create the file:** Inside the `lib` directory, create a new file named `serverAuth.ts`.
-    *   *Note:* If you use path aliases like `@/lib`, ensure your `tsconfig.json` is configured. Otherwise, use relative paths (e.g., `../../lib/prismaDb`).
+
+    - _Note:_ If you use path aliases like `@/lib`, ensure your `tsconfig.json` is configured. Otherwise, use relative paths (e.g., `../../lib/prismaDb`).
 
 2.  **Add the code:**
 
     ```typescript
     // lib/serverAuth.ts
-    import { NextApiRequest } from 'next';
-    import { getSession } from 'next-auth/react';
-    import prismaDb from '@/lib/prismaDb'; // Or use relative path: ../../lib/prismaDb
+    import { NextApiRequest } from "next";
+    import { getSession } from "next-auth/react";
+    import prismaDb from "@/lib/prismaDb"; // Or use relative path: ../../lib/prismaDb
 
     const serverAuth = async (req: NextApiRequest) => {
       // 1. Get the session using the request context
@@ -100,7 +102,7 @@ To avoid repeating authentication logic in every API route, we'll create a reusa
 
       // 2. Check if session, user, or email exists
       if (!session?.user?.email) {
-        throw new Error('Not signed in');
+        throw new Error("Not signed in");
       }
 
       // 3. Fetch the current user from the database using the email from the session
@@ -112,7 +114,7 @@ To avoid repeating authentication logic in every API route, we'll create a reusa
 
       // 4. Check if the user was found in the database
       if (!currentUser) {
-        throw new Error('Not signed in'); // User might have been deleted
+        throw new Error("Not signed in"); // User might have been deleted
       }
 
       // 5. Return the found user
@@ -124,13 +126,13 @@ To avoid repeating authentication logic in every API route, we'll create a reusa
 
 **Explanation:**
 
-*   This asynchronous function `serverAuth` takes the `NextApiRequest` object.
-*   It uses `getSession({ req })` to retrieve the user session based on the JWT token likely present in the request cookies or headers managed by NextAuth.js.
-*   It performs validation checks:
-    *   Ensures a session exists and contains user email information.
-    *   Queries the database using Prisma to find the user associated with the session's email.
-*   If any check fails, it throws a "Not signed in" error.
-*   If successful, it returns an object containing the `currentUser` data retrieved from the database.
+- This asynchronous function `serverAuth` takes the `NextApiRequest` object.
+- It uses `getSession({ req })` to retrieve the user session based on the JWT token likely present in the request cookies or headers managed by NextAuth.js.
+- It performs validation checks:
+  - Ensures a session exists and contains user email information.
+  - Queries the database using Prisma to find the user associated with the session's email.
+- If any check fails, it throws a "Not signed in" error.
+- If successful, it returns an object containing the `currentUser` data retrieved from the database.
 
 ## Creating the `/api/current` Endpoint
 
@@ -138,18 +140,21 @@ This API route will use our `serverAuth` utility to safely return the data of th
 
 ### Implementation
 
-1.  **Create the file:** Inside the `pages/api` directory (***not*** `pages/api/auth`), create a new file named `current.ts`.
+1.  **Create the file:** Inside the `pages/api` directory (**_not_** `pages/api/auth`), create a new file named `current.ts`.
 
 2.  **Add the code:**
 
     ```typescript
     // pages/api/current.ts
-    import { NextApiRequest, NextApiResponse } from 'next';
-    import serverAuth from '@/lib/serverAuth'; // Or use relative path: ../../lib/serverAuth
+    import { NextApiRequest, NextApiResponse } from "next";
+    import serverAuth from "@/lib/serverAuth"; // Or use relative path: ../../lib/serverAuth
 
-    export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+    export default async function handler(
+      req: NextApiRequest,
+      res: NextApiResponse,
+    ) {
       // 1. Limit to GET requests only
-      if (req.method !== 'GET') {
+      if (req.method !== "GET") {
         return res.status(405).end(); // Method Not Allowed
       }
 
@@ -160,7 +165,6 @@ This API route will use our `serverAuth` utility to safely return the data of th
 
         // 3. Return the user data if successful
         return res.status(200).json(currentUser);
-
       } catch (error) {
         // 4. Handle errors (e.g., 'Not signed in' from serverAuth)
         console.error(error);
@@ -171,10 +175,10 @@ This API route will use our `serverAuth` utility to safely return the data of th
 
 **Explanation:**
 
-*   This API handler first checks if the request method is `GET`. If not, it returns a `405 Method Not Allowed` status.
-*   It calls `await serverAuth(req)` within a `try...catch` block.
-*   If `serverAuth` executes successfully, it destructures `currentUser` from the result and returns it with a `200 OK` status.
-*   If `serverAuth` throws an error (meaning the user is not authenticated or an issue occurred), the `catch` block handles it, logs the error, and returns a `400 Bad Request` status (or potentially `401 Unauthorized`).
+- This API handler first checks if the request method is `GET`. If not, it returns a `405 Method Not Allowed` status.
+- It calls `await serverAuth(req)` within a `try...catch` block.
+- If `serverAuth` executes successfully, it destructures `currentUser` from the result and returns it with a `200 OK` status.
+- If `serverAuth` throws an error (meaning the user is not authenticated or an issue occurred), the `catch` block handles it, logs the error, and returns a `400 Bad Request` status (or potentially `401 Unauthorized`).
 
 ## Client-Side Data Fetching with SWR
 
@@ -189,9 +193,9 @@ SWR requires a fetcher function. We'll create a simple one using Axios.
 
     ```typescript
     // lib/fetcher.ts
-    import axios from 'axios';
+    import axios from "axios";
 
-    const fetcher = (url: string) => axios.get(url).then(res => res.data);
+    const fetcher = (url: string) => axios.get(url).then((res) => res.data);
 
     export default fetcher;
     ```
@@ -217,17 +221,21 @@ This custom hook will encapsulate the logic for fetching user data using SWR.
 
     ```typescript
     // hooks/useCurrentUser.ts
-    import useSWR from 'swr';
-    import fetcher from '@/lib/fetcher'; // Adjust path if needed
+    import useSWR from "swr";
+    import fetcher from "@/lib/fetcher"; // Adjust path if needed
 
     const useCurrentUser = () => {
       // Use SWR to fetch data from '/api/current' using our fetcher
-      const { data, error, isLoading, mutate } = useSWR('/api/current', fetcher, {
-        // Optional: Configuration options for SWR
-        shouldRetryOnError: false, // Don't retry automatically on error
-        revalidateOnFocus: false,    // Don't revalidate automatically on window focus
-        revalidateOnReconnect: false // Don't revalidate automatically on reconnect
-      });
+      const { data, error, isLoading, mutate } = useSWR(
+        "/api/current",
+        fetcher,
+        {
+          // Optional: Configuration options for SWR
+          shouldRetryOnError: false, // Don't retry automatically on error
+          revalidateOnFocus: false, // Don't revalidate automatically on window focus
+          revalidateOnReconnect: false, // Don't revalidate automatically on reconnect
+        },
+      );
 
       return {
         // Rename 'data' to 'user' for clarity
@@ -244,10 +252,10 @@ This custom hook will encapsulate the logic for fetching user data using SWR.
 
 **Explanation:**
 
-*   The `useCurrentUser` hook utilizes the `useSWR` hook from the `swr` package.
-*   It specifies the API endpoint key (`/api/current`) and the `fetcher` function to use.
-*   SWR handles caching, revalidation, loading states (`isLoading`), and error states (`error`).
-*   The hook returns an object containing the fetched `user` data (aliased from `data`), `error`, `isLoading` state, and the `mutate` function.
+- The `useCurrentUser` hook utilizes the `useSWR` hook from the `swr` package.
+- It specifies the API endpoint key (`/api/current`) and the `fetcher` function to use.
+- SWR handles caching, revalidation, loading states (`isLoading`), and error states (`error`).
+- The hook returns an object containing the fetched `user` data (aliased from `data`), `error`, `isLoading` state, and the `mutate` function.
 
 ## Protecting Client-Side Pages
 
@@ -300,10 +308,10 @@ We need to ensure that only authenticated users can access certain pages, like t
 
 **Explanation:**
 
-*   `getServerSideProps` runs on the server before the page is rendered.
-*   It calls `getSession(context)` to check for an active session.
-*   If `session` is null (user is not logged in), it returns a `redirect` object, sending the user to the `/auth` page.
-*   If `session` exists, it returns an empty `props` object, allowing the page component (`Home`) to render.
+- `getServerSideProps` runs on the server before the page is rendered.
+- It calls `getSession(context)` to check for an active session.
+- If `session` is null (user is not logged in), it returns a `redirect` object, sending the user to the `/auth` page.
+- If `session` exists, it returns an empty `props` object, allowing the page component (`Home`) to render.
 
 ### Adding a Logout Button
 
@@ -350,9 +358,9 @@ If you encounter login problems, especially errors like `Server selection timed 
 2.  **Network Access:** Click on "Network Access" in the left-hand sidebar.
 3.  **Check IP Addresses:** Ensure your current IP address is allowed. If you have a dynamic IP, it might have changed since you initially configured access.
 4.  **Add/Update IP:**
-    *   Click "Add IP Address".
-    *   For testing/development convenience, you can choose "Allow Access From Anywhere" (IP: `0.0.0.0/0`). **Note:** This is less secure and generally not recommended for production.
-    *   Alternatively, add your *current* IP address. You might need to update this periodically if your IP changes.
+    - Click "Add IP Address".
+    - For testing/development convenience, you can choose "Allow Access From Anywhere" (IP: `0.0.0.0/0`). **Note:** This is less secure and generally not recommended for production.
+    - Alternatively, add your _current_ IP address. You might need to update this periodically if your IP changes.
 5.  **Confirm:** Click "Confirm" and wait for the changes to become active.
 6.  **Restart Server:** Restart your Next.js development server (`npm run dev` or `yarn dev`).
 
@@ -560,15 +568,15 @@ Let's style the profiles page.
 
 **Explanation:**
 
-*   The outer `div` centers the content vertically and horizontally.
-*   An inner `div` uses `flex-col` to stack the title and the profiles grid.
-*   The "Who is watching?" title is styled.
-*   Another `div` acts as the container for profile items (`gap-8`, `mt-10`).
-*   The profile item itself is wrapped in a `div` with an `onClick` handler that uses `router.push('/')` to navigate to the home page.
-*   The `group` class is added to the profile container. This allows styling child elements based on the hover state of the parent (using `group-hover:`).
-*   The image `div` has styling for size, rounded corners, centering, and a border that appears on hover (`group-hover:border-white`). `overflow-hidden` prevents potential image overflow.
-*   The `img` tag points to the default profile image in the `public` folder.
-*   The name `div` below the image also uses `group-hover:text-white` to change color when the profile item is hovered.
+- The outer `div` centers the content vertically and horizontally.
+- An inner `div` uses `flex-col` to stack the title and the profiles grid.
+- The "Who is watching?" title is styled.
+- Another `div` acts as the container for profile items (`gap-8`, `mt-10`).
+- The profile item itself is wrapped in a `div` with an `onClick` handler that uses `router.push('/')` to navigate to the home page.
+- The `group` class is added to the profile container. This allows styling child elements based on the hover state of the parent (using `group-hover:`).
+- The image `div` has styling for size, rounded corners, centering, and a border that appears on hover (`group-hover:border-white`). `overflow-hidden` prevents potential image overflow.
+- The `img` tag points to the default profile image in the `public` folder.
+- The name `div` below the image also uses `group-hover:text-white` to change color when the profile item is hovered.
 
 ### Displaying User Information
 
@@ -582,11 +590,11 @@ The `onClick={() => router.push('/')}` handler on the profile item container (ad
 
 You have successfully implemented:
 
-*   Server-side authentication protection for API routes using a reusable `serverAuth` utility.
-*   A dedicated API endpoint (`/api/current`) to fetch authenticated user data.
-*   Client-side page protection using `getServerSideProps` and `getSession`.
-*   Efficient client-side data fetching with a custom `useCurrentUser` hook powered by SWR.
-*   A functional Profiles screen that displays user information and allows navigation into the main application.
+- Server-side authentication protection for API routes using a reusable `serverAuth` utility.
+- A dedicated API endpoint (`/api/current`) to fetch authenticated user data.
+- Client-side page protection using `getServerSideProps` and `getSession`.
+- Efficient client-side data fetching with a custom `useCurrentUser` hook powered by SWR.
+- A functional Profiles screen that displays user information and allows navigation into the main application.
 
 This setup provides a robust way to handle authentication and user data throughout your Next.js application.
 

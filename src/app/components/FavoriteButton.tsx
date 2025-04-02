@@ -1,6 +1,6 @@
 import React from "react";
 import { useCallback } from "react";
-import { AiOutlinePlus } from 'react-icons/ai';
+import { AiOutlinePlus } from "react-icons/ai";
 import useCurrentUser from "../hooks/useCurrentUser";
 import useFavorites from "../hooks/useFavorites";
 

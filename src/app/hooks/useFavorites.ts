@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState } from "react";
 
 export default function useFavorites() {
   return {
@@ -6,7 +6,7 @@ export default function useFavorites() {
   };
 }
 
-import { useState } from 'react';
+import { useState } from "react";
 
 export default function useFavorites() {
   return {
@@ -14,7 +14,7 @@ export default function useFavorites() {
   };
 }
 
-import { useState } from 'react';
+import { useState } from "react";
 
 export default function useFavorites() {
   return {
@@ -22,7 +22,7 @@ export default function useFavorites() {
   };
 }
 
-import { useState } from 'react';
+import { useState } from "react";
 
 export default function useFavorites() {
   return {
@@ -30,7 +30,7 @@ export default function useFavorites() {
   };
 }
 
-import { useCallback } from 'react';
+import { useCallback } from "react";
 
 export default function useFavorites() {
   return {
