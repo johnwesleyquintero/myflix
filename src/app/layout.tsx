@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist_Sans as Geist, Geist_Mono } from "next/font/google";
+import Image from 'next/image';
 import "./globals.css";
 
 const geistSans = Geist({
@@ -20,6 +21,8 @@ export const metadata: Metadata = {
   },
 };
 
+import { GeistSans, GeistMono } from 'geist/font';
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -28,9 +31,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${GeistSans.variable} ${GeistMono.variable} antialiased`}
       >
-        <img src="/logo.svg" alt="Logo" className="hidden" />
+        <Image src="/logo.svg" alt="Logo" className="hidden" width={100} height={100} />
         {children}
       </body>
     </html>
