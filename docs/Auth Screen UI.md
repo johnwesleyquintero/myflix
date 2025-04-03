@@ -148,9 +148,9 @@
 This structured approach ensures all requirements are met, transforming the raw transcript into a high-quality, usable technical tutorial in Markdown format. The iterative refinement step helps catch errors and improve clarity.Okay, here is the structured Markdown document converted from the provided transcript, focusing on clarity, PDF compatibility, and adherence to technical tutorial standards.
 
 ````markdown
-# Full-Stack Netflix Clone Tutorial: Authentication Module
+# Full-Stack Myflix Clone Tutorial: Authentication Module
 
-This tutorial guides you through building the authentication user interface and backend logic for a Netflix clone application using Next.js, Tailwind CSS, Prisma, MongoDB, and NextAuth.
+This tutorial guides you through building the authentication user interface and backend logic for a Myflix clone application using Next.js, Tailwind CSS, Prisma, MongoDB, and NextAuth.
 
 ---
 
@@ -583,7 +583,7 @@ Add text below the button to allow users to switch between the "Sign In" and "Re
 // ... inside the form container div, after the button
 
             <p className="text-neutral-500 mt-12">
-              {variant === 'login' ? 'First time using Netflix?' : 'Already have an account?'}
+              {variant === 'login' ? 'First time using Myflix?' : 'Already have an account?'}
               <span onClick={toggleVariant} className="text-white ml-1 hover:underline cursor-pointer">
                 {variant === 'login' ? 'Create an account' : 'Login'}
               </span>
@@ -635,7 +635,7 @@ Update the Title (`h2`) and Button text to be dynamic based on the `variant`. Al
               {variant === 'login' ? 'Login' : 'Sign up'} {/* Dynamic Button Text */}
             </button>
             <p className="text-neutral-500 mt-12">
-              {variant === 'login' ? 'First time using Netflix?' : 'Already have an account?'}
+              {variant === 'login' ? 'First time using Myflix?' : 'Already have an account?'}
               <span onClick={toggleVariant} className="text-white ml-1 hover:underline cursor-pointer">
                 {variant === 'login' ? 'Create an account' : 'Login'}
               </span>
@@ -1198,7 +1198,7 @@ _(Timestamp: 1:27:13)_
 
 1.  **Get GitHub OAuth Credentials:**
     - Go to your GitHub Settings -> Developer settings -> OAuth Apps -> New OAuth App.
-    - **Application name:** `Netflix Clone Video` (or similar).
+    - **Application name:** `Myflix Clone Video` (or similar).
     - **Homepage URL:** `http://localhost:3000` (use your production URL later).
     - **Authorization callback URL:** `http://localhost:3000/api/auth/callback/github` (NextAuth's default callback URL structure).
     - Click "Register application".
@@ -1242,7 +1242,7 @@ _(Timestamp: 1:29:40)_
 
 1.  **Set up Google Cloud Project & OAuth Consent Screen:**
     - Go to the [Google Cloud Console](https://console.cloud.google.com/).
-    - Create a new project (e.g., `Netflix Clone Video Tutorial`) or select an existing one.
+    - Create a new project (e.g., `Myflix Clone Video Tutorial`) or select an existing one.
     - Navigate to "APIs & Services" -> "OAuth consent screen".
     - Choose **External** user type. Click Create.
     - Fill in required fields: App name, User support email, Developer contact information. Click Save and Continue through Scopes and Test Users (can configure later).
@@ -1251,7 +1251,7 @@ _(Timestamp: 1:29:40)_
     - Navigate to "APIs & Services" -> "Credentials".
     - Click "+ CREATE CREDENTIALS" -> "OAuth client ID".
     - **Application type:** Web application.
-    - **Name:** `Netflix Clone Web Client` (or similar).
+    - **Name:** `Myflix Clone Web Client` (or similar).
     - **Authorized JavaScript origins:** Add `http://localhost:3000`.
     - **Authorized redirect URIs:** Add `http://localhost:3000/api/auth/callback/google`.
     - Click Create.

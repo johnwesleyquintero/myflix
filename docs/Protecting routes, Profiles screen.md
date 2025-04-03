@@ -330,7 +330,7 @@ For testing purposes, add a simple logout button to the home page.
 
       return (
         <>
-          <h1 className="text-2xl text-green-500">Netflix Clone</h1>
+          <h1 className="text-2xl text-green-500">Myflix Clone</h1>
           {/* Display user info */}
           <p className="text-white text-lg">
             Logged in as: {user?.name} ({user?.email})
@@ -382,7 +382,7 @@ Now that we have the `useCurrentUser` hook, we can easily display the logged-in 
 
       return (
         <>
-          <h1 className="text-2xl text-green-500">Netflix Clone</h1>
+          <h1 className="text-2xl text-green-500">Myflix Clone</h1>
           {/* Display user info */}
           <p className="text-white text-lg">
             Logged in as: {user?.name} ({user?.email})

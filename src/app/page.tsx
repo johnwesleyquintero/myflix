@@ -1,5 +1,6 @@
 "use client";
-import React, { useState } from "react";
+'use client';
+import React, { useState, useCallback } from "react";
 import Input from "@/components/input";
 import Image from "next/image";
 
@@ -16,11 +17,11 @@ export default function Auth() {
   }, []);
 
   return (
-    <div className="relative h-full w-full bg-[url('/images/hero.jpg')] bg-no-repeat bg-center bg-fixed bg-cover">
+    <div className="relative h-full w-full bg-[url('/public/default-fallback.svg')] bg-no-repeat bg-center bg-fixed bg-cover">
       <div className="bg-black w-full h-full lg:bg-opacity-50">
         <nav className="px-12 py-5">
           <Image
-            src="/images/logo.png"
+            src="/logo.svg"
             alt="Logo"
             width={100}
             height={48}
@@ -71,7 +72,7 @@ export default function Auth() {
             </button>
             <p className="text-neutral-500 mt-12">
               {variant === "login"
-                ? "First time using Netflix?"
+                ? "First time using Myflix?"
                 : "Already have an account?"}
               <span
                 onClick={toggleVariant}
