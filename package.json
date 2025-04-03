@@ -13,6 +13,7 @@
     "@geist-ui/core": "^2.3.8",
     "@prisma/client": "^6.5.0",
     "axios": "^1.8.4",
+    "bcrypt": "^5.1.1",
     "mongodb": "^6.15.0",
     "next": "15.2.4",
     "next-auth": "^4.24.11",

@@ -20,9 +20,9 @@
       }
     ],
     "paths": {
-      "@/lib/*": ["./lib/*"],
-      "@/prisma/*": ["./prisma/*"],
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@/lib/*": ["./src/lib/*"],
+      "@/prisma/*": ["./prisma/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
