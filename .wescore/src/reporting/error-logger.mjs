@@ -110,7 +110,7 @@ class IssueLogger {
         fs.writeFileSync(
           this.logFilePath,
           `========================================\nWescore Issue Log\nStarted: ${new Date().toISOString()}\n${systemInfo}\n========================================\n\n`,
-          'utf8',
+          'utf8'
         );
       }
 
@@ -150,7 +150,7 @@ class IssueLogger {
         const stats = fs.statSync(this.logFilePath);
         if (stats.size >= this.maxLogSize) {
           console.log(
-            `[IssueLogger] Log file size (${stats.size} bytes) exceeds limit (${this.maxLogSize} bytes). Rotating.`,
+            `[IssueLogger] Log file size (${stats.size} bytes) exceeds limit (${this.maxLogSize} bytes). Rotating.`
           );
           this._rotateLogs();
         }
@@ -184,7 +184,7 @@ class IssueLogger {
   _deleteOldestLog() {
     const oldestLog = `${this.logFilePath}.${this.maxLogFiles - 1}`;
     console.log(
-      `[IssueLogger] Max log files reached. Deleting oldest: ${oldestLog}`,
+      `[IssueLogger] Max log files reached. Deleting oldest: ${oldestLog}`
     );
     try {
       fs.unlinkSync(oldestLog);
@@ -198,7 +198,7 @@ class IssueLogger {
       try {
         fs.renameSync(
           `${this.logFilePath}.${i}`,
-          `${this.logFilePath}.${i + 1}`,
+          `${this.logFilePath}.${i + 1}`
         );
       } catch (e) {
         console.error(`[IssueLogger] Failed to rename log ${i}: ${e.message}`);
@@ -295,7 +295,7 @@ class IssueLogger {
       cliFormattedMessages = result.messages
         .map(
           (msg) =>
-            `  ${msg.line}:${msg.column}  ${msg.severity === 2 ? 'Error' : 'Warning'}: ${msg.message}  ${msg.ruleId || 'core'}`,
+            `  ${msg.line}:${msg.column}  ${msg.severity === 2 ? 'Error' : 'Warning'}: ${msg.message}  ${msg.ruleId || 'core'}`
         )
         .join('\n');
     }
@@ -332,7 +332,7 @@ class IssueLogger {
     if (!this.isInitialized) {
       // Attempt recovery if not initialized (might happen if constructor failed partially)
       console.error(
-        '[IssueLogger] Warning: Logger not initialized when trying to log. Attempting recovery.',
+        '[IssueLogger] Warning: Logger not initialized when trying to log. Attempting recovery.'
       );
       if (!this._initializeLogger()) {
         const criticalMsg =
@@ -340,7 +340,7 @@ class IssueLogger {
         console.error(criticalMsg, issueDetail);
         try {
           process.stderr.write(
-            criticalMsg + JSON.stringify(issueDetail) + '\n',
+            criticalMsg + JSON.stringify(issueDetail) + '\n'
           );
         } catch {
           /* Intentional no-op */
@@ -412,7 +412,7 @@ class IssueLogger {
     const { logEntry, issueDetail } = this._formatInternalErrorEntry(
       error,
       category,
-      context,
+      context
     );
     this._logIssue(category, logEntry, issueDetail); // Use the common internal log method
     return category;
@@ -431,7 +431,7 @@ class IssueLogger {
         const { logEntry, issueDetail } = this._formatLintResultEntry(
           result,
           category,
-          context,
+          context
         );
         this._logIssue(category, logEntry, issueDetail); // Use the common internal log method
         // Remove loggedCount as it's not used

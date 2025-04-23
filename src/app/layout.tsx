@@ -1,20 +1,20 @@
-import type { Metadata } from "next";
+import type { Metadata } from 'next';
 
-import Image from "next/image";
-import { Inter } from "next/font/google";
-import "./globals.css";
+import Image from 'next/image';
+import { Inter } from 'next/font/google';
+import './globals.css';
 
 const inter = Inter({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-inter",
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-inter',
 });
 
 export const metadata: Metadata = {
-  title: "MyFlix",
-  description: "MyFlix - Stream your favorite movies and TV shows online.",
+  title: 'MyFlix',
+  description: 'MyFlix - Stream your favorite movies and TV shows online.',
   icons: {
-    icon: "/favicon.svg",
+    icon: '/favicon.svg',
   },
 };
 

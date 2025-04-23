@@ -46,7 +46,7 @@ const CommandCheckSchema = z.object({
     .string()
     .optional()
     .describe(
-      'Optional fallback command string to be run if the main command fails (useful for auto-fixing or alternative checks).',
+      'Optional fallback command string to be run if the main command fails (useful for auto-fixing or alternative checks).'
     ),
   workingDirectory: z
     .string()
@@ -61,7 +61,7 @@ const CommandCheckSchema = z.object({
     .positive('Timeout must be a positive number.')
     .optional()
     .describe(
-      'Optional timeout override for this specific command in milliseconds.',
+      'Optional timeout override for this specific command in milliseconds.'
     ),
 });
 

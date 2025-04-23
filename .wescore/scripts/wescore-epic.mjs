@@ -108,12 +108,12 @@ async function playSound(soundType) {
       if (err.code === 'ENOENT') {
         log(
           'DEBUG',
-          `Sound file not found: ${soundPath}. Cannot play '${soundType}' sound.`,
+          `Sound file not found: ${soundPath}. Cannot play '${soundType}' sound.`
         );
       } else {
         log(
           'DEBUG',
-          `Failed to play sound '${soundType}' from ${soundPath}: ${err.message}`,
+          `Failed to play sound '${soundType}' from ${soundPath}: ${err.message}`
         );
       }
     }
@@ -135,14 +135,14 @@ function renderFiglet(text, font = 'Standard', colorFn = chalk.white) {
 function showHackerHeader() {
   renderFiglet('WESCORE', 'Cybermedium', BRO_CONFIG.colors.header);
   console.log(
-    BRO_CONFIG.colors.header('<<< BRO-EDITION EXTREME - v3.14 - ENGAGE! >>>'),
+    BRO_CONFIG.colors.header('<<< BRO-EDITION EXTREME - v3.14 - ENGAGE! >>>')
   );
   console.log(
     BRO_CONFIG.colors.asciiArt(`
   .--.      .--.      .--.      .--.      .--.      .--.      .--.
 :::::.\\::::::::.\\::::::::.\\::::::::.\\::::::::.\\::::::::.\\::::::::.\\
        '--'      '--'      '--'      '--'      '--'      '--'      '--'
-`),
+`)
   );
   playSound('startup');
 }
@@ -239,7 +239,7 @@ function handleSuccess(check, duration) {
   log(
     'SUCCESS',
     `${randomMeme} (${BRO_CONFIG.colors.duration(formatDuration(duration))})`,
-    check.name,
+    check.name
   );
   playSound('successSingle');
 }
@@ -249,7 +249,7 @@ function handleSuccess(check, duration) {
 // ==================================================================
 async function runEpicCheck(check, index, total) {
   const spinner = new Spinner(
-    `${chalk.yellow(`[${index}/${total}]`)} %s ${BRO_CONFIG.colors.checkName(check.name)}... ${chalk.gray('Engaging thrusters...')}`,
+    `${chalk.yellow(`[${index}/${total}]`)} %s ${BRO_CONFIG.colors.checkName(check.name)}... ${chalk.gray('Engaging thrusters...')}`
   );
   spinner.setSpinnerString(getRandom(BRO_CONFIG.spinners));
   spinner.start();
@@ -293,7 +293,7 @@ async function runEpicCheck(check, index, total) {
       resultData.status = 'failed';
       // Construct an error-like object for handleError
       const failureError = new Error(
-        `Command failed with exit code ${result.exitCode}`,
+        `Command failed with exit code ${result.exitCode}`
       );
       failureError.stdout = result.stdout;
       failureError.stderr = result.stderr;
@@ -331,14 +331,14 @@ async function runWescore() {
     if (checks.length === 0) {
       log(
         'WARN',
-        'No checks enabled in .wescore.json. Nothing to do, I guess? 🤷',
+        'No checks enabled in .wescore.json. Nothing to do, I guess? 🤷'
       );
       process.exit(0); // Not an error, just nothing to run
     }
 
     log(
       'INFO',
-      `Found ${chalk.magenta(checks.length)} checks. Mode: ${chalk.yellow(config.runMode)}. Fail Fast: ${chalk.yellow(config.failFast)}. Let's do this!`,
+      `Found ${chalk.magenta(checks.length)} checks. Mode: ${chalk.yellow(config.runMode)}. Fail Fast: ${chalk.yellow(config.failFast)}. Let's do this!`
     );
     log('INFO', 'Initiating scan... BEEP BOOP BEEP...');
 
@@ -350,7 +350,7 @@ async function runWescore() {
       if (config.runMode === 'parallel') {
         log('INFO', 'Going parallel! Like, multi-threading... kinda. 🔥');
         const promises = checks.map((check, i) =>
-          runEpicCheck(check, i + 1, totalChecks),
+          runEpicCheck(check, i + 1, totalChecks)
         );
         const settledResults = await Promise.allSettled(promises);
 
@@ -383,7 +383,7 @@ async function runWescore() {
           } else if (config.failFast) {
             log(
               'WARN',
-              `🚨 FAIL FAST TRIGGERED! Check '${check.name}' failed. Aborting mission! 🚨`,
+              `🚨 FAIL FAST TRIGGERED! Check '${check.name}' failed. Aborting mission! 🚨`
             );
             playSound('failReport'); // Play alert sound on fail fast
             break; // Exit the loop
@@ -401,7 +401,7 @@ async function runWescore() {
 
     // Determine exit code
     const failedCount = results.filter(
-      (r) => r.status === 'failed' || r.status === 'errored',
+      (r) => r.status === 'failed' || r.status === 'errored'
     ).length;
     process.exit(failedCount > 0 ? 1 : 0);
   } catch (error) {
@@ -418,7 +418,7 @@ async function runWescore() {
 // ==================================================================
 function showFinalReport(results, passed, totalRun, totalDuration) {
   const failed = results.filter(
-    (r) => r.status === 'failed' || r.status === 'errored',
+    (r) => r.status === 'failed' || r.status === 'errored'
   ).length;
   const success = passed === totalRun && failed === 0;
 
@@ -453,7 +453,7 @@ function showFinalReport(results, passed, totalRun, totalDuration) {
       borderColor: success ? '#32cd32' : '#ff0000', // Use the actual hex codes
       title: '📊 FINAL SCORE 📊',
       titleAlignment: 'center',
-    },
+    }
   );
   console.log(summaryBox);
 
@@ -471,7 +471,7 @@ function showFinalReport(results, passed, totalRun, totalDuration) {
           ? `: ${check.error.shortMessage || check.error.message}`
           : '';
         console.log(
-          `  ${statusColor('✖')} ${BRO_CONFIG.colors.checkName(check.name)} ${statusColor(`[${check.status.toUpperCase()}]`)}${exitInfo}${errorMsg}`,
+          `  ${statusColor('✖')} ${BRO_CONFIG.colors.checkName(check.name)} ${statusColor(`[${check.status.toUpperCase()}]`)}${exitInfo}${errorMsg}`
         );
         // Optionally log truncated stdout/stderr here if needed
         // if (check.stderr) console.log(chalk.gray(`    Stderr: ${truncateOutput(check.stderr)}`));
@@ -479,13 +479,13 @@ function showFinalReport(results, passed, totalRun, totalDuration) {
       });
     log(
       'ERROR',
-      "Scroll up to see the glorious details of each failure. Fix 'em, champ!",
+      "Scroll up to see the glorious details of each failure. Fix 'em, champ!"
     );
   }
 
   log(
     'INFO',
-    `Wescore Bro-Edition signing off. ${success ? 'Stay frosty.' : 'Try harder, n00b.'}`,
+    `Wescore Bro-Edition signing off. ${success ? 'Stay frosty.' : 'Try harder, n00b.'}`
   );
 }
 
@@ -515,7 +515,7 @@ async function loadConfig() {
       config = JSON.parse(rawConfig);
     } catch (parseError) {
       throw new Error(
-        `Syntax Error in ${CONFIG_PATH}! Looks like JSON got scrambled. Maybe a stray comma or a cat walked on the keyboard? 🐈\n  ${parseError.message}`,
+        `Syntax Error in ${CONFIG_PATH}! Looks like JSON got scrambled. Maybe a stray comma or a cat walked on the keyboard? 🐈\n  ${parseError.message}`
       );
     }
 
@@ -525,7 +525,7 @@ async function loadConfig() {
     }
     if (!config.checks || !Array.isArray(config.checks)) {
       throw new Error(
-        "Config file is missing the 'checks' array, or it's not an array. Did you forget it?",
+        "Config file is missing the 'checks' array, or it's not an array. Did you forget it?"
       );
     }
 
@@ -537,14 +537,14 @@ async function loadConfig() {
       if (!c.name || typeof c.name !== 'string') {
         log(
           'WARN',
-          `Check at index ${index} is missing a 'name' (string). Skipping.`,
+          `Check at index ${index} is missing a 'name' (string). Skipping.`
         );
         return false;
       }
       if (!c.command || typeof c.command !== 'string') {
         log(
           'WARN',
-          `Check "${c.name}" is missing a 'command' (string). Skipping.`,
+          `Check "${c.name}" is missing a 'command' (string). Skipping.`
         );
         return false;
       }
@@ -564,7 +564,7 @@ async function loadConfig() {
   } catch (error) {
     if (error.code === 'ENOENT') {
       throw new Error(
-        `Config file not found at ${CONFIG_PATH}. Did it get beamed up by aliens? 👽 Create one!`,
+        `Config file not found at ${CONFIG_PATH}. Did it get beamed up by aliens? 👽 Create one!`
       );
     }
     // Re-throw other errors (like parsing or validation errors)
@@ -580,8 +580,8 @@ runWescore().catch((e) => {
   console.error(
     '\n' +
       chalk.bgRed.whiteBright.bold(
-        '! C A T A S T R O P H I C   F A I L U R E !',
-      ),
+        '! C A T A S T R O P H I C   F A I L U R E !'
+      )
   );
   console.error(chalk.red('The Wescore runner itself crashed and burned! 🔥'));
   console.error(e);

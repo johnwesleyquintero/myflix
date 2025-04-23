@@ -16,7 +16,7 @@ export function cleanTarget(targetPath, targetDesc) {
     } catch (error) {
       console.log(
         'ERROR',
-        `Failed to remove ${targetDesc}. Check permissions or if files are in use.`,
+        `Failed to remove ${targetDesc}. Check permissions or if files are in use.`
       );
       console.log('ERROR', error.message);
       process.exit(1);
@@ -39,7 +39,7 @@ export function getProjectInfo() {
     return { name, version };
   } catch (error) {
     console.warn(
-      'Could not read package.json for naming. Using default "project-local".',
+      'Could not read package.json for naming. Using default "project-local".'
     );
     return { name: 'project', version: 'local' };
   }

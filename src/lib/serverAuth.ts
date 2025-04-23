@@ -1,6 +1,7 @@
 import { NextApiRequest } from 'next';
 import { getSession } from 'next-auth/react';
-import prismaDb from '@/lib/prismaDb';
+import prisma from '@/lib/prisma';
+// Removed unused import of PrismaClient
 
 const serverAuth = async (req: NextApiRequest) => {
   const session = await getSession({ req });
@@ -9,7 +10,7 @@ const serverAuth = async (req: NextApiRequest) => {
     throw new Error('Not signed in');
   }
 
-  const currentUser = await prismaDb.user.findUnique({
+  const currentUser = await prisma.user.findUnique({
     where: { email: session.user.email },
   });
 

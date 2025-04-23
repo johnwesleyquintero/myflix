@@ -1,13 +1,13 @@
-import { NextApiRequest, NextApiResponse } from "next";
-import prisma from "@/lib/prisma";
-import serverAuth from "@/lib/serverAuth";
+import { NextApiRequest, NextApiResponse } from 'next';
+import prisma from '@/lib/prisma';
+import serverAuth from '@/lib/serverAuth';
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse,
+  res: NextApiResponse
 ) {
   try {
-    if (req.method !== "POST") {
+    if (req.method !== 'POST') {
       return res.status(405).end();
     }
 
@@ -21,12 +21,12 @@ export default async function handler(
     });
 
     if (!existingMovie) {
-      throw new Error("Invalid ID");
+      throw new Error('Invalid ID');
     }
 
     const updatedUser = await prisma.user.update({
       where: {
-        email: currentUser.email || "",
+        email: currentUser.email || '',
       },
       data: {
         favoriteIds: {

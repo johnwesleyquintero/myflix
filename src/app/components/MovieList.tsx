@@ -1,5 +1,5 @@
-import MovieCard from "./MovieCard";
-import { Skeleton } from "../ui/skeleton";
+import MovieCard from './MovieCard';
+import { Skeleton } from '../ui/skeleton';
 
 type MovieListProps = {
   title: string;

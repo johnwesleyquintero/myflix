@@ -1,20 +1,20 @@
-import { NextApiRequest, NextApiResponse } from "next";
-import prisma from "@/lib/prisma";
-import bcrypt from "bcrypt";
+import { NextApiRequest, NextApiResponse } from 'next';
+import prisma from '@/lib/prisma';
+import bcrypt from 'bcrypt';
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse,
+  res: NextApiResponse
 ) {
   try {
-    if (req.method !== "POST") {
+    if (req.method !== 'POST') {
       return res.status(405).end();
     }
 
     const { email, password, name } = req.body;
 
     if (!email || !password || !name) {
-      return res.status(400).json({ error: "Missing required fields" });
+      return res.status(400).json({ error: 'Missing required fields' });
     }
 
     const existingUser = await prisma.user.findUnique({
@@ -22,7 +22,7 @@ export default async function handler(
     });
 
     if (existingUser) {
-      return res.status(422).json({ error: "Email already exists" });
+      return res.status(422).json({ error: 'Email already exists' });
     }
 
     const hashedPassword = await bcrypt.hash(password, 12);
@@ -32,7 +32,7 @@ export default async function handler(
         email,
         name,
         hashedPassword,
-        image: "",
+        image: '',
       },
     });
 

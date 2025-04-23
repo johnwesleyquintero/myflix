@@ -736,7 +736,7 @@ To avoid creating multiple Prisma Client instances during development due to Nex
 
 ```typescript
 // lib/prismaDb.ts
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient } from '@prisma/client';
 
 // Add prisma to the NodeJS global type
 declare global {
@@ -744,7 +744,7 @@ declare global {
 }
 
 const client = globalThis.prisma || new PrismaClient();
-if (process.env.NODE_ENV !== "production") globalThis.prisma = client;
+if (process.env.NODE_ENV !== 'production') globalThis.prisma = client;
 
 export default client;
 ```
@@ -876,30 +876,30 @@ NextAuth handles authentication flows (credentials, OAuth).
 
 ```typescript
 // pages/api/auth/[...nextauth].ts
-import NextAuth from "next-auth";
-import CredentialsProvider from "next-auth/providers/credentials"; // Correct import path
-import GithubProvider from "next-auth/providers/github"; // Add later
-import GoogleProvider from "next-auth/providers/google"; // Add later
-import { PrismaAdapter } from "@next-auth/prisma-adapter"; // Add later
-import { compare } from "bcrypt";
+import NextAuth from 'next-auth';
+import CredentialsProvider from 'next-auth/providers/credentials'; // Correct import path
+import GithubProvider from 'next-auth/providers/github'; // Add later
+import GoogleProvider from 'next-auth/providers/google'; // Add later
+import { PrismaAdapter } from '@next-auth/prisma-adapter'; // Add later
+import { compare } from 'bcrypt';
 
-import prisma from "@/lib/prismaDb"; // Import Prisma client helper
+import prisma from '@/lib/prismaDb'; // Import Prisma client helper
 
 export default NextAuth({
   providers: [
     // Add GithubProvider and GoogleProvider here later
 
     CredentialsProvider({
-      id: "credentials", // Important identifier
-      name: "Credentials",
+      id: 'credentials', // Important identifier
+      name: 'Credentials',
       credentials: {
-        email: { label: "Email", type: "text" },
-        password: { label: "Password", type: "password" },
+        email: { label: 'Email', type: 'text' },
+        password: { label: 'Password', type: 'password' },
       },
       // Authorize function handles credential validation
       async authorize(credentials) {
         if (!credentials?.email || !credentials?.password) {
-          throw new Error("Email and password required");
+          throw new Error('Email and password required');
         }
 
         // Find user by email
@@ -911,17 +911,17 @@ export default NextAuth({
 
         // Check if user exists and has a hashed password
         if (!user || !user.hashedPassword) {
-          throw new Error("Email does not exist");
+          throw new Error('Email does not exist');
         }
 
         // Compare provided password with stored hash
         const isCorrectPassword = await compare(
           credentials.password,
-          user.hashedPassword,
+          user.hashedPassword
         );
 
         if (!isCorrectPassword) {
-          throw new Error("Incorrect password");
+          throw new Error('Incorrect password');
         }
 
         // Return user object if authentication succeeds
@@ -930,12 +930,12 @@ export default NextAuth({
     }),
   ],
   pages: {
-    signIn: "/auth", // Redirect users to /auth if sign-in is required
+    signIn: '/auth', // Redirect users to /auth if sign-in is required
   },
-  debug: process.env.NODE_ENV === "development", // Enable debug logs in development
+  debug: process.env.NODE_ENV === 'development', // Enable debug logs in development
   // adapter: PrismaAdapter(prisma), // Add Prisma Adapter later for session/account handling
   session: {
-    strategy: "jwt", // Using JWT for session management
+    strategy: 'jwt', // Using JWT for session management
   },
   jwt: {
     secret: process.env.NEXTAUTH_JWT_SECRET, // Secret for signing JWTs
@@ -964,17 +964,17 @@ Create an API route specifically for handling user registration.
 
 ```typescript
 // pages/api/register.ts
-import bcrypt from "bcrypt";
-import { NextApiRequest, NextApiResponse } from "next";
-import prisma from "@/lib/prismaDb";
+import bcrypt from 'bcrypt';
+import { NextApiRequest, NextApiResponse } from 'next';
+import prisma from '@/lib/prismaDb';
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse,
+  res: NextApiResponse
 ) {
   // Only allow POST requests
-  if (req.method !== "POST") {
-    return res.status(405).json({ message: "Method Not Allowed" });
+  if (req.method !== 'POST') {
+    return res.status(405).json({ message: 'Method Not Allowed' });
   }
 
   try {
@@ -984,7 +984,7 @@ export default async function handler(
     if (!email || !name || !password) {
       return res
         .status(400)
-        .json({ message: "Missing email, name, or password" });
+        .json({ message: 'Missing email, name, or password' });
     }
 
     // Check if email already exists
@@ -993,7 +993,7 @@ export default async function handler(
     });
 
     if (existingUser) {
-      return res.status(422).json({ error: "Email taken" }); // 422 Unprocessable Entity
+      return res.status(422).json({ error: 'Email taken' }); // 422 Unprocessable Entity
     }
 
     // Hash the password
@@ -1005,14 +1005,14 @@ export default async function handler(
         email,
         name,
         hashedPassword,
-        image: "", // Default empty image
+        image: '', // Default empty image
         emailVerified: new Date(), // Mark email as verified immediately (adjust if verification flow needed)
       },
     });
 
     return res.status(200).json(user); // Return created user
   } catch (error) {
-    console.error("Registration Error:", error);
+    console.error('Registration Error:', error);
     return res.status(400).json({ message: `Something went wrong: ${error}` });
   }
 }
@@ -1218,13 +1218,13 @@ _(Timestamp: 1:27:13)_
     ```typescript
     // pages/api/auth/[...nextauth].ts
     // ... other imports
-    import GithubProvider from "next-auth/providers/github";
+    import GithubProvider from 'next-auth/providers/github';
 
     export default NextAuth({
       providers: [
         GithubProvider({
-          clientId: process.env.GITHUB_ID || "", // Add fallback for type safety
-          clientSecret: process.env.GITHUB_SECRET || "",
+          clientId: process.env.GITHUB_ID || '', // Add fallback for type safety
+          clientSecret: process.env.GITHUB_SECRET || '',
         }),
         // ... CredentialsProvider
       ],
@@ -1270,7 +1270,7 @@ _(Timestamp: 1:29:40)_
     ```typescript
     // pages/api/auth/[...nextauth].ts
     // ... other imports
-    import GoogleProvider from "next-auth/providers/google";
+    import GoogleProvider from 'next-auth/providers/google';
 
     export default NextAuth({
       providers: [
@@ -1278,8 +1278,8 @@ _(Timestamp: 1:29:40)_
           /* ... */
         }),
         GoogleProvider({
-          clientId: process.env.GOOGLE_CLIENT_ID || "",
-          clientSecret: process.env.GOOGLE_CLIENT_SECRET || "",
+          clientId: process.env.GOOGLE_CLIENT_ID || '',
+          clientSecret: process.env.GOOGLE_CLIENT_SECRET || '',
         }),
         CredentialsProvider({
           /* ... */
@@ -1311,8 +1311,8 @@ To automatically handle user creation, account linking, and session management i
     ```typescript
     // pages/api/auth/[...nextauth].ts
     // ... other imports
-    import { PrismaAdapter } from "@next-auth/prisma-adapter";
-    import prisma from "@/lib/prismaDb"; // Ensure prisma client import is correct
+    import { PrismaAdapter } from '@next-auth/prisma-adapter';
+    import prisma from '@/lib/prismaDb'; // Ensure prisma client import is correct
 
     export default NextAuth({
       adapter: PrismaAdapter(prisma), // Add the adapter

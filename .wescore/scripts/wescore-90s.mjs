@@ -55,7 +55,7 @@ let allChecks = [];
 async function loadConfig() {
   log(
     'INFO',
-    `${ICONS.floppy} Accessing Configuration Matrix from ${THEME_COLORS.cyan}${CONFIG_PATH}${THEME_COLORS.reset}...`,
+    `${ICONS.floppy} Accessing Configuration Matrix from ${THEME_COLORS.cyan}${CONFIG_PATH}${THEME_COLORS.reset}...`
   );
   try {
     const configFileContent = await fs.readFile(CONFIG_PATH, 'utf-8');
@@ -71,12 +71,12 @@ async function loadConfig() {
     config.checks.forEach((check, index) => {
       if (!check.name || typeof check.name !== 'string') {
         throw new Error(
-          `Config Error! Check at index ${index} needs a valid 'name', dude!`,
+          `Config Error! Check at index ${index} needs a valid 'name', dude!`
         );
       }
       if (!check.command || typeof check.command !== 'string') {
         throw new Error(
-          `Config Error! Check "${check.name}" is missing a 'command'. Not cool!`,
+          `Config Error! Check "${check.name}" is missing a 'command'. Not cool!`
         );
       }
     });
@@ -84,16 +84,16 @@ async function loadConfig() {
     allChecks = config.checks.filter((check) => check.enabled !== false);
     log(
       'INFO',
-      `${THEME_COLORS.green}Configuration Loaded!${THEME_COLORS.reset} Found ${THEME_COLORS.magenta}${allChecks.length}${THEME_COLORS.reset} enabled checks. Let's do this!`,
+      `${THEME_COLORS.green}Configuration Loaded!${THEME_COLORS.reset} Found ${THEME_COLORS.magenta}${allChecks.length}${THEME_COLORS.reset} enabled checks. Let's do this!`
     );
     log(
       'DEBUG',
-      `Run Mode: ${config.config.runMode}, Fail Fast: ${config.config.failFast}, Timeout: ${config.config.commandTimeout}ms`,
+      `Run Mode: ${config.config.runMode}, Fail Fast: ${config.config.failFast}, Timeout: ${config.config.commandTimeout}ms`
     );
   } catch (error) {
     log(
       'WARN',
-      `${ICONS.warn} Whoa! Could not load or parse ${CONFIG_PATH}. No checks will run. Bummer! Error: ${error.message}`,
+      `${ICONS.warn} Whoa! Could not load or parse ${CONFIG_PATH}. No checks will run. Bummer! Error: ${error.message}`
     );
     allChecks = [];
   }
@@ -184,7 +184,7 @@ function printSeparator(char = '=', length = 60) {
 function printHeader(text) {
   printSeparator('=', 60);
   console.log(
-    `${THEME_COLORS.cyanBg}${THEME_COLORS.blackBg}>> ${text.padEnd(54)} <<${THEME_COLORS.reset}`,
+    `${THEME_COLORS.cyanBg}${THEME_COLORS.blackBg}>> ${text.padEnd(54)} <<${THEME_COLORS.reset}`
   );
   printSeparator('=', 60);
 }
@@ -204,7 +204,7 @@ function generateRetroSummary(data) {
   };
 
   const failedChecksLines = data.failedCheckNames.map((name) =>
-    textLine('  - Failed', name),
+    textLine('  - Failed', name)
   );
 
   return `
@@ -248,7 +248,7 @@ async function runChecks() {
   if (allChecks.length === 0) {
     log(
       'ERROR',
-      `${ICONS.skull} No enabled checks found! Cannot proceed. Check your ${THEME_COLORS.cyan}.wescore.json${THEME_COLORS.reset}!`,
+      `${ICONS.skull} No enabled checks found! Cannot proceed. Check your ${THEME_COLORS.cyan}.wescore.json${THEME_COLORS.reset}!`
     );
     process.exit(1);
   }
@@ -257,11 +257,11 @@ async function runChecks() {
   log('INFO', 'Boot sequence complete. Engaging quality checks...');
   log(
     'DEBUG',
-    `[Sys Stats - Start] Heap Used: ${Math.round(process.memoryUsage().heapUsed / 1024 / 1024)}MB`,
+    `[Sys Stats - Start] Heap Used: ${Math.round(process.memoryUsage().heapUsed / 1024 / 1024)}MB`
   );
   log(
     'INFO',
-    `${THEME_COLORS.magenta}⚡ Go Go Go!${THEME_COLORS.reset} Running ${THEME_COLORS.cyan}${allChecks.length}${THEME_COLORS.reset} checks in ${THEME_COLORS.yellow}${config.config.runMode}${THEME_COLORS.reset} mode!`,
+    `${THEME_COLORS.magenta}⚡ Go Go Go!${THEME_COLORS.reset} Running ${THEME_COLORS.cyan}${allChecks.length}${THEME_COLORS.reset} checks in ${THEME_COLORS.yellow}${config.config.runMode}${THEME_COLORS.reset} mode!`
   );
 
   const results = [];
@@ -272,7 +272,7 @@ async function runChecks() {
     const checkIndex = index + 1;
     log(
       'INFO',
-      `\n[${checkIndex}/${total}] ${ICONS.running} Engaging: ${THEME_COLORS.yellow}${check.name}${THEME_COLORS.reset} (${THEME_COLORS.cyan}${check.command}${THEME_COLORS.reset})`,
+      `\n[${checkIndex}/${total}] ${ICONS.running} Engaging: ${THEME_COLORS.yellow}${check.name}${THEME_COLORS.reset} (${THEME_COLORS.cyan}${check.command}${THEME_COLORS.reset})`
     );
     const checkStart = performance.now();
     let checkResult = {
@@ -303,34 +303,34 @@ async function runChecks() {
         checkResult.status = 'success';
         log(
           'INFO',
-          `[${checkIndex}/${total}] ${ICONS.success} ${THEME_COLORS.green}Rad!${THEME_COLORS.reset} Check PASSED: ${check.name} (${formatDuration(checkResult.durationMs)})`,
+          `[${checkIndex}/${total}] ${ICONS.success} ${THEME_COLORS.green}Rad!${THEME_COLORS.reset} Check PASSED: ${check.name} (${formatDuration(checkResult.durationMs)})`
         );
         if (checkResult.stderr && checkResult.stderr.trim()) {
           log(
             'WARN',
-            `  ${ICONS.warn} Hmm, stderr output on success:\n${truncateOutput(checkResult.stderr, 5)}`,
+            `  ${ICONS.warn} Hmm, stderr output on success:\n${truncateOutput(checkResult.stderr, 5)}`
           );
         }
       } else {
         checkResult.status = 'failed';
         log(
           'ERROR',
-          `[${checkIndex}/${total}] ${ICONS.failure} ${THEME_COLORS.red}Bummer!${THEME_COLORS.reset} Check FAILED (Exit Code ${checkResult.exitCode}): ${check.name} (${formatDuration(checkResult.durationMs)})`,
+          `[${checkIndex}/${total}] ${ICONS.failure} ${THEME_COLORS.red}Bummer!${THEME_COLORS.reset} Check FAILED (Exit Code ${checkResult.exitCode}): ${check.name} (${formatDuration(checkResult.durationMs)})`
         );
         log(
           'ERROR',
-          `  ${THEME_COLORS.red}Output Log:${THEME_COLORS.reset}\n--- Error Output ---`,
+          `  ${THEME_COLORS.red}Output Log:${THEME_COLORS.reset}\n--- Error Output ---`
         );
         if (checkResult.stderr && checkResult.stderr.trim()) {
           log(
             'ERROR',
-            `  ${THEME_COLORS.yellow}Stderr:${THEME_COLORS.reset}\n${checkResult.stderr}`,
+            `  ${THEME_COLORS.yellow}Stderr:${THEME_COLORS.reset}\n${checkResult.stderr}`
           );
         }
         if (checkResult.stdout && checkResult.stdout.trim()) {
           log(
             'ERROR',
-            `  ${THEME_COLORS.yellow}Stdout:${THEME_COLORS.reset}\n${checkResult.stdout}`,
+            `  ${THEME_COLORS.yellow}Stdout:${THEME_COLORS.reset}\n${checkResult.stdout}`
           );
         }
         log('ERROR', `--- End Error Output ---`);
@@ -345,7 +345,7 @@ async function runChecks() {
 
       log(
         'ERROR',
-        `[${checkIndex}/${total}] ${ICONS.error} ${THEME_COLORS.red}Crash and Burn!${THEME_COLORS.reset} Execution Error: ${check.name} (${formatDuration(checkResult.durationMs)}) - ${error.shortMessage || error.message}`,
+        `[${checkIndex}/${total}] ${ICONS.error} ${THEME_COLORS.red}Crash and Burn!${THEME_COLORS.reset} Execution Error: ${check.name} (${formatDuration(checkResult.durationMs)}) - ${error.shortMessage || error.message}`
       );
       if (checkResult.stderr && checkResult.stderr.trim()) {
         log('ERROR', `  Stderr:\n${checkResult.stderr}`);
@@ -361,7 +361,7 @@ async function runChecks() {
   if (config.config.runMode === 'parallel') {
     log('INFO', 'Firing up parallel processors... Warp speed!');
     const checkPromises = allChecks.map((check, i) =>
-      executeCheck(check, i, allChecks.length),
+      executeCheck(check, i, allChecks.length)
     );
     const completedResults = await Promise.all(checkPromises);
     results.push(...completedResults);
@@ -382,7 +382,7 @@ async function runChecks() {
         if (config.config.failFast) {
           log(
             'WARN',
-            `${ICONS.warn} ${THEME_COLORS.yellow}FAIL FAST!${THEME_COLORS.reset} Check '${check.name}' failed. Aborting mission!`,
+            `${ICONS.warn} ${THEME_COLORS.yellow}FAIL FAST!${THEME_COLORS.reset} Check '${check.name}' failed. Aborting mission!`
           );
           break; // Exit the loop
         }
@@ -396,12 +396,12 @@ async function runChecks() {
 
   log(
     'DEBUG',
-    `[Sys Stats - End] Heap Used: ${Math.round(process.memoryUsage().heapUsed / 1024 / 1024)}MB`,
+    `[Sys Stats - End] Heap Used: ${Math.round(process.memoryUsage().heapUsed / 1024 / 1024)}MB`
   );
   printSubHeader('Checks Complete');
   log(
     'INFO',
-    `Ran ${results.length}/${allChecks.length} checks in ${formatDuration(checksDurationMs)} (Total script time: ${formatDuration(overallDurationMs)})`,
+    `Ran ${results.length}/${allChecks.length} checks in ${formatDuration(checksDurationMs)} (Total script time: ${formatDuration(overallDurationMs)})`
   );
 
   // --- Generate and Print Summary ---
@@ -416,7 +416,7 @@ async function runChecks() {
     failedChecks: checksFailed,
     failedCheckNames: failedChecksData.map(
       (check) =>
-        `${check.name} ${THEME_COLORS.red}(Exit: ${check.exitCode || 'N/A'})${THEME_COLORS.reset}`,
+        `${check.name} ${THEME_COLORS.red}(Exit: ${check.exitCode || 'N/A'})${THEME_COLORS.reset}`
     ),
     durationSeconds: checksDurationMs / 1000,
     gitCommitHash: gitCommitHash,
@@ -431,26 +431,26 @@ async function runChecks() {
   // --- Recommendations Section ---
   if (failedChecksData.length > 0) {
     printHeader(
-      `${THEME_COLORS.red}${ICONS.skull} TROUBLESHOOTING ZONE ${ICONS.skull}${THEME_COLORS.reset}`,
+      `${THEME_COLORS.red}${ICONS.skull} TROUBLESHOOTING ZONE ${ICONS.skull}${THEME_COLORS.reset}`
     );
     log(
       'ERROR',
-      `Detected ${THEME_COLORS.red}${failedChecksData.length}${THEME_COLORS.reset} failed check(s):`,
+      `Detected ${THEME_COLORS.red}${failedChecksData.length}${THEME_COLORS.reset} failed check(s):`
     );
     failedChecksData.forEach((check) => {
       log(
         'ERROR',
-        `  ${THEME_COLORS.magenta}▼ ${check.name}${THEME_COLORS.reset}`,
+        `  ${THEME_COLORS.magenta}▼ ${check.name}${THEME_COLORS.reset}`
       );
     });
 
     console.log(
-      `\n${THEME_COLORS.yellow}=====================[ Action Required! ]=====================${THEME_COLORS.reset}`,
+      `\n${THEME_COLORS.yellow}=====================[ Action Required! ]=====================${THEME_COLORS.reset}`
     );
 
     failedChecksData.forEach((check) => {
       console.log(
-        `\n${THEME_COLORS.cyan}• Check Failed: ${check.name}${THEME_COLORS.reset}`,
+        `\n${THEME_COLORS.cyan}• Check Failed: ${check.name}${THEME_COLORS.reset}`
       );
       const errorOutput = (
         check.stderr ||
@@ -458,20 +458,20 @@ async function runChecks() {
         'No specific output captured.'
       ).trim();
       console.log(
-        `  ${THEME_COLORS.grey}Review the error log snippet below:${THEME_COLORS.reset}`,
+        `  ${THEME_COLORS.grey}Review the error log snippet below:${THEME_COLORS.reset}`
       );
       console.log(
-        `${THEME_COLORS.red}----------[ Error Snippet Start ]----------${THEME_COLORS.reset}`,
+        `${THEME_COLORS.red}----------[ Error Snippet Start ]----------${THEME_COLORS.reset}`
       );
       // Indent snippet lines
       console.log(
-        `  ${truncateOutput(errorOutput, 15).split('\n').join('\n  ')}`,
+        `  ${truncateOutput(errorOutput, 15).split('\n').join('\n  ')}`
       );
       console.log(
-        `${THEME_COLORS.red}----------[  Error Snippet End  ]----------${THEME_COLORS.reset}`,
+        `${THEME_COLORS.red}----------[  Error Snippet End  ]----------${THEME_COLORS.reset}`
       );
       console.log(
-        `  ${THEME_COLORS.grey}Command was:${THEME_COLORS.reset} ${THEME_COLORS.cyan}${check.command}${THEME_COLORS.reset}`,
+        `  ${THEME_COLORS.grey}Command was:${THEME_COLORS.reset} ${THEME_COLORS.cyan}${check.command}${THEME_COLORS.reset}`
       );
     });
 
@@ -502,14 +502,14 @@ ${THEME_COLORS.yellow}==========================================================
     // Success message
     log(
       'INFO',
-      `${THEME_COLORS.green}${THEME_COLORS.blink}*** All checks passed! Excellent! ✨ ***${THEME_COLORS.reset}`,
+      `${THEME_COLORS.green}${THEME_COLORS.blink}*** All checks passed! Excellent! ✨ ***${THEME_COLORS.reset}`
     );
   }
 
   // Exit with appropriate code
   log(
     'INFO',
-    `Shutdown sequence initiated... Exiting with code ${checksFailed > 0 ? 1 : 0}.`,
+    `Shutdown sequence initiated... Exiting with code ${checksFailed > 0 ? 1 : 0}.`
   );
   process.exit(checksFailed > 0 ? 1 : 0);
 }
@@ -528,10 +528,10 @@ if (
 runChecks().catch((error) => {
   // Catch unexpected script errors
   console.error(
-    `\n${THEME_COLORS.red}${THEME_COLORS.blink}*** FATAL SYSTEM ERROR ***${THEME_COLORS.reset}`,
+    `\n${THEME_COLORS.red}${THEME_COLORS.blink}*** FATAL SYSTEM ERROR ***${THEME_COLORS.reset}`
   );
   console.error(
-    `${THEME_COLORS.red}A major glitch occurred in the Wescore runner itself!${THEME_COLORS.reset}`,
+    `${THEME_COLORS.red}A major glitch occurred in the Wescore runner itself!${THEME_COLORS.reset}`
   );
   console.error(error.stack);
   process.exit(2); // Different exit code for runner errors

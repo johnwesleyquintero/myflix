@@ -92,9 +92,9 @@ To avoid repeating authentication logic in every API route, we'll create a reusa
 
     ```typescript
     // lib/serverAuth.ts
-    import { NextApiRequest } from "next";
-    import { getSession } from "next-auth/react";
-    import prismaDb from "@/lib/prismaDb"; // Or use relative path: ../../lib/prismaDb
+    import { NextApiRequest } from 'next';
+    import { getSession } from 'next-auth/react';
+    import prismaDb from '@/lib/prismaDb'; // Or use relative path: ../../lib/prismaDb
 
     const serverAuth = async (req: NextApiRequest) => {
       // 1. Get the session using the request context
@@ -102,7 +102,7 @@ To avoid repeating authentication logic in every API route, we'll create a reusa
 
       // 2. Check if session, user, or email exists
       if (!session?.user?.email) {
-        throw new Error("Not signed in");
+        throw new Error('Not signed in');
       }
 
       // 3. Fetch the current user from the database using the email from the session
@@ -114,7 +114,7 @@ To avoid repeating authentication logic in every API route, we'll create a reusa
 
       // 4. Check if the user was found in the database
       if (!currentUser) {
-        throw new Error("Not signed in"); // User might have been deleted
+        throw new Error('Not signed in'); // User might have been deleted
       }
 
       // 5. Return the found user
@@ -146,15 +146,15 @@ This API route will use our `serverAuth` utility to safely return the data of th
 
     ```typescript
     // pages/api/current.ts
-    import { NextApiRequest, NextApiResponse } from "next";
-    import serverAuth from "@/lib/serverAuth"; // Or use relative path: ../../lib/serverAuth
+    import { NextApiRequest, NextApiResponse } from 'next';
+    import serverAuth from '@/lib/serverAuth'; // Or use relative path: ../../lib/serverAuth
 
     export default async function handler(
       req: NextApiRequest,
-      res: NextApiResponse,
+      res: NextApiResponse
     ) {
       // 1. Limit to GET requests only
-      if (req.method !== "GET") {
+      if (req.method !== 'GET') {
         return res.status(405).end(); // Method Not Allowed
       }
 
@@ -193,7 +193,7 @@ SWR requires a fetcher function. We'll create a simple one using Axios.
 
     ```typescript
     // lib/fetcher.ts
-    import axios from "axios";
+    import axios from 'axios';
 
     const fetcher = (url: string) => axios.get(url).then((res) => res.data);
 
@@ -221,20 +221,20 @@ This custom hook will encapsulate the logic for fetching user data using SWR.
 
     ```typescript
     // hooks/useCurrentUser.ts
-    import useSWR from "swr";
-    import fetcher from "@/lib/fetcher"; // Adjust path if needed
+    import useSWR from 'swr';
+    import fetcher from '@/lib/fetcher'; // Adjust path if needed
 
     const useCurrentUser = () => {
       // Use SWR to fetch data from '/api/current' using our fetcher
       const { data, error, isLoading, mutate } = useSWR(
-        "/api/current",
+        '/api/current',
         fetcher,
         {
           // Optional: Configuration options for SWR
           shouldRetryOnError: false, // Don't retry automatically on error
           revalidateOnFocus: false, // Don't revalidate automatically on window focus
           revalidateOnReconnect: false, // Don't revalidate automatically on reconnect
-        },
+        }
       );
 
       return {

@@ -46,7 +46,8 @@
         "^\\./.*?:$",
         "Parsing error:",
         "@typescript-eslint/",
-        "Error: "
+        "Error: ",
+        "Unexpected non-object config"
       ],
       "suggestion": "Enforce code style consistency by iteratively linting and correcting: Execute `npm run lint`, meticulously review the output for violations of established style guidelines, systematically address each reported issue, and repeat this process until the codebase achieves a clean linting report, ensuring adherence to coding standards and best practices."
     },

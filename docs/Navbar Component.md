@@ -96,7 +96,7 @@ First, let's prepare our main application page (`index.tsx`) to use the Navbar.
 
 ```tsx
 // pages/index.tsx
-import Navbar from "@/components/Navbar"; // Adjust path as needed
+import Navbar from '@/components/Navbar'; // Adjust path as needed
 
 export default function Home() {
   return (
@@ -120,12 +120,12 @@ Now, let's create the basic structure for our `Navbar` component.
 
 ```tsx
 // components/Navbar.tsx
-import React from "react";
+import React from 'react';
 
 const Navbar = () => {
   return (
     <nav>
-      {" "}
+      {' '}
       {/* Use <nav> for semantic navigation */}
       <div>Navbar Placeholder</div>
     </nav>
@@ -147,13 +147,13 @@ Let's apply styles to the main `<nav>` element and its inner container using Tai
 
 ```tsx
 // components/Navbar.tsx
-import React from "react";
+import React from 'react';
 
 const Navbar = () => {
   return (
     // Main navigation container
     <nav className="w-full fixed z-40">
-      {" "}
+      {' '}
       {/* Full width, fixed top, above other content */}
       {/* Inner container for padding, flex layout, and background */}
       <div
@@ -191,8 +191,8 @@ Add the application logo within the inner container.
 
 ```tsx
 // components/Navbar.tsx
-import React from "react";
-import Image from "next/image"; // Or use standard <img>
+import React from 'react';
+import Image from 'next/image'; // Or use standard <img>
 
 const Navbar = () => {
   return (
@@ -236,7 +236,7 @@ _(Timestamp Reference: 2:04:12)_
 
 ```tsx
 // components/NavbarItem.tsx
-import React from "react";
+import React from 'react';
 
 const NavbarItem = () => {
   return (
@@ -257,7 +257,7 @@ Let's use TypeScript interfaces to define props, making the component reusable f
 
 ```tsx
 // components/NavbarItem.tsx
-import React from "react";
+import React from 'react';
 
 // Define props interface
 interface NavbarItemProps {
@@ -288,9 +288,9 @@ Now, let's import and use the `NavbarItem` component within `Navbar.tsx` for the
 
 ```tsx
 // components/Navbar.tsx
-import React from "react";
-import Image from "next/image";
-import NavbarItem from "./NavbarItem"; // Import the component
+import React from 'react';
+import Image from 'next/image';
+import NavbarItem from './NavbarItem'; // Import the component
 
 const Navbar = () => {
   return (
@@ -311,7 +311,7 @@ const Navbar = () => {
 
         {/* Desktop Navigation Items (Hidden on small screens) */}
         <div className="flex-row ml-8 gap-7 hidden lg:flex">
-          {" "}
+          {' '}
           {/* Horizontal, margin left, gap, hide on small, flex on large+ */}
           <NavbarItem label="Home" />
           <NavbarItem label="Series" />
@@ -346,7 +346,7 @@ For smaller screens, we'll hide the main navigation items and show a "Browse" bu
 ```tsx
 // components/Navbar.tsx
 // ... other imports
-import { BsChevronDown } from "react-icons/bs"; // Import icon
+import { BsChevronDown } from 'react-icons/bs'; // Import icon
 
 const Navbar = () => {
   // ... (state logic will be added later)
@@ -359,10 +359,10 @@ const Navbar = () => {
 
         {/* Mobile Menu Trigger (Visible on small screens) */}
         <div className="lg:hidden flex flex-row items-center gap-2 ml-8 cursor-pointer relative">
-          {" "}
+          {' '}
           {/* Hide on large+, flex, gap, margin, pointer, relative positioning context */}
           <p className="text-white text-sm">Browse</p>
-          <BsChevronDown className="text-white transition" />{" "}
+          <BsChevronDown className="text-white transition" />{' '}
           {/* Basic styling for icon */}
           {/* Mobile Menu Component will be placed here */}
         </div>
@@ -387,7 +387,7 @@ This component will contain the list of navigation items for mobile view.
 
 ```tsx
 // components/MobileMenu.tsx
-import React from "react";
+import React from 'react';
 
 interface MobileMenuProps {
   visible?: boolean; // Optional boolean prop
@@ -430,11 +430,11 @@ Now, let's control the visibility of the mobile menu using component state in `N
 
 ```tsx
 // components/Navbar.tsx
-import React, { useState, useCallback } from "react"; // Import hooks
-import Image from "next/image";
-import NavbarItem from "./NavbarItem";
-import MobileMenu from "./MobileMenu"; // Import MobileMenu
-import { BsChevronDown } from "react-icons/bs";
+import React, { useState, useCallback } from 'react'; // Import hooks
+import Image from 'next/image';
+import NavbarItem from './NavbarItem';
+import MobileMenu from './MobileMenu'; // Import MobileMenu
+import { BsChevronDown } from 'react-icons/bs';
 
 const Navbar = () => {
   // State for mobile menu visibility
@@ -461,7 +461,7 @@ const Navbar = () => {
           onClick={toggleMobileMenu}
           className="lg:hidden flex flex-row items-center gap-2 ml-8 cursor-pointer relative"
         >
-          {" "}
+          {' '}
           {/* Add onClick handler */}
           <p className="text-white text-sm">Browse</p>
           <BsChevronDown className="text-white transition" />
@@ -486,7 +486,7 @@ Add the actual navigation links to the `MobileMenu` component, similar to the de
 
 ```tsx
 // components/MobileMenu.tsx
-import React from "react";
+import React from 'react';
 
 interface MobileMenuProps {
   visible?: boolean;
@@ -541,7 +541,7 @@ Rotate the chevron icon when the mobile menu is open.
   <p className="text-white text-sm">Browse</p>
   {/* Dynamically add rotate-180 class */}
   <BsChevronDown
-    className={`text-white transition ${showMobileMenu ? "rotate-180" : "rotate-0"}`}
+    className={`text-white transition ${showMobileMenu ? 'rotate-180' : 'rotate-0'}`}
   />
   <MobileMenu visible={showMobileMenu} />
 </div>;
@@ -564,7 +564,7 @@ Now, let's add the user profile section to the right side of the navbar, includi
 ```tsx
 // components/Navbar.tsx
 // ... other imports
-import { BsSearch, BsBell } from "react-icons/bs"; // Import icons
+import { BsSearch, BsBell } from 'react-icons/bs'; // Import icons
 
 const Navbar = () => {
   // ... state and functions ...
@@ -578,7 +578,7 @@ const Navbar = () => {
 
         {/* Profile & Actions Section */}
         <div className="flex flex-row ml-auto gap-7 items-center">
-          {" "}
+          {' '}
           {/* Aligns to the right, gap, vertical center */}
           {/* Search Icon */}
           <div className="text-gray-200 hover:text-gray-300 cursor-pointer transition">
@@ -626,11 +626,11 @@ const Navbar = () => {
 
           {/* Profile Menu Trigger */}
           <div className="flex flex-row items-center gap-2 cursor-pointer relative">
-            {" "}
+            {' '}
             {/* Container for image and chevron */}
             {/* Profile Image Container */}
             <div className="w-6 h-6 lg:w-10 lg:h-10 rounded-md overflow-hidden">
-              {" "}
+              {' '}
               {/* Sizing, rounding, hide overflow */}
               <Image
                 src="/images/default-blue.png" // Or use dynamic user image
@@ -641,7 +641,7 @@ const Navbar = () => {
               />
             </div>
             {/* Dropdown Chevron */}
-            <BsChevronDown className="text-white transition" />{" "}
+            <BsChevronDown className="text-white transition" />{' '}
             {/* Chevron - rotation added later */}
             {/* Account Menu Component will be placed here */}
           </div>
@@ -667,8 +667,8 @@ This component displays when the user clicks their profile icon.
 
 ```tsx
 // components/AccountMenu.tsx
-import React from "react";
-import Image from "next/image"; // If using Next.js Image
+import React from 'react';
+import Image from 'next/image'; // If using Next.js Image
 
 interface AccountMenuProps {
   visible?: boolean;
@@ -681,12 +681,12 @@ const AccountMenu: React.FC<AccountMenuProps> = ({ visible }) => {
 
   return (
     <div className="bg-black w-56 absolute top-14 right-0 py-5 flex-col border-2 border-gray-800 flex">
-      {" "}
+      {' '}
       {/* Positioning and styling */}
       <div className="flex flex-col gap-3">
         {/* User Info Section */}
         <div className="px-3 group/item flex flex-row gap-3 items-center w-full">
-          {" "}
+          {' '}
           {/* Group for hover effect */}
           <Image
             className="w-8 rounded-md"
@@ -726,9 +726,9 @@ Let's make the sign-out link functional using `next-auth`.
 
 ```tsx
 // components/AccountMenu.tsx
-import React from "react";
-import { signOut } from "next-auth/react"; // Import signOut
-import Image from "next/image";
+import React from 'react';
+import { signOut } from 'next-auth/react'; // Import signOut
+import Image from 'next/image';
 // import useCurrentUser from '@/hooks/useCurrentUser'; // Example: Fetching user data
 
 interface AccountMenuProps {
@@ -749,7 +749,7 @@ const AccountMenu: React.FC<AccountMenuProps> = ({ visible }) => {
           <Image
             className="w-8 rounded-md"
             // src={user?.image || '/images/default-blue.png'} // Use actual user image
-            src={"/images/default-blue.png"} // Placeholder
+            src={'/images/default-blue.png'} // Placeholder
             alt="Profile"
             width={32}
             height={32}
@@ -788,7 +788,7 @@ Control the visibility of the `AccountMenu` similar to how we handled the `Mobil
 ```tsx
 // components/Navbar.tsx
 // ... imports ...
-import AccountMenu from "./AccountMenu"; // Import AccountMenu
+import AccountMenu from './AccountMenu'; // Import AccountMenu
 
 const Navbar = () => {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
@@ -828,7 +828,7 @@ const Navbar = () => {
                 className="w-full h-full object-cover"
               />
             </div>
-            <BsChevronDown className="text-white transition" />{" "}
+            <BsChevronDown className="text-white transition" />{' '}
             {/* Rotation added next */}
             {/* Render AccountMenu conditionally */}
             <AccountMenu visible={showAccountMenu} />
@@ -863,7 +863,7 @@ Rotate the profile dropdown chevron icon when the `AccountMenu` is visible.
   </div>
   {/* Dynamically add rotate-180 class */}
   <BsChevronDown
-    className={`text-white transition ${showAccountMenu ? "rotate-180" : "rotate-0"}`}
+    className={`text-white transition ${showAccountMenu ? 'rotate-180' : 'rotate-0'}`}
   />
   <AccountMenu visible={showAccountMenu} />
 </div>
@@ -882,7 +882,7 @@ Let's make the navbar background transparent initially and transition to a solid
 
 ```tsx
 // components/Navbar.tsx
-import React, { useState, useCallback, useEffect } from "react"; // Add useEffect
+import React, { useState, useCallback, useEffect } from 'react'; // Add useEffect
 // ... other imports ...
 
 const TOP_OFFSET = 66; // Pixels scrolled before background appears
@@ -969,7 +969,7 @@ const Navbar = () => {
                     items-center
                     transition
                     duration-500
-                    ${showBackground ? "bg-zinc-900 bg-opacity-90" : ""} // Conditional background
+                    ${showBackground ? 'bg-zinc-900 bg-opacity-90' : ''} // Conditional background
                 `}
       >
         {/* ... Logo ... */}

@@ -1,15 +1,15 @@
-import { NextApiRequest, NextApiResponse } from "next";
-import prisma from "@/lib/prisma";
-import serverAuth from "@/lib/serverAuth";
+import { NextApiRequest, NextApiResponse } from 'next';
+import prisma from '@/lib/prisma';
+import serverAuth from '@/lib/serverAuth';
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse,
+  res: NextApiResponse
 ) {
   try {
     await serverAuth(req);
 
-    if (req.method !== "GET") {
+    if (req.method !== 'GET') {
       return res.status(405).end();
     }
 

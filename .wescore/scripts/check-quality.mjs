@@ -166,7 +166,7 @@ function configureLogLevel() {
   if (currentLogLevel < LOG_LEVELS.SILENT) {
     log(
       'DEBUG',
-      `Log level set to ${C.bold(determinedLevel)} (Value: ${currentLogLevel})`,
+      `Log level set to ${C.bold(determinedLevel)} (Value: ${currentLogLevel})`
     );
   }
 }
@@ -181,7 +181,7 @@ function configureLogLevel() {
 async function loadConfig() {
   log(
     'INFO',
-    `${ICONS.config} Loading configuration from ${C.filePath(CONFIG_PATH)}...`,
+    `${ICONS.config} Loading configuration from ${C.filePath(CONFIG_PATH)}...`
   );
   try {
     const configFileContent = await fs.readFile(CONFIG_PATH, 'utf-8');
@@ -191,7 +191,7 @@ async function loadConfig() {
     } catch (parseError) {
       log(
         'ERROR',
-        `${ICONS.error} Failed to parse ${C.filePath(CONFIG_PATH)}. Invalid JSON: ${parseError.message}`,
+        `${ICONS.error} Failed to parse ${C.filePath(CONFIG_PATH)}. Invalid JSON: ${parseError.message}`
       );
       return false; // Critical error, cannot proceed safely
     }
@@ -220,7 +220,7 @@ async function loadConfig() {
       typeof config.config.visuals !== 'object'
     ) {
       throw new Error(
-        'Core `config` or `config.visuals` structure is missing or invalid.',
+        'Core `config` or `config.visuals` structure is missing or invalid.'
       );
     }
     if (!Array.isArray(config.checks)) {
@@ -248,7 +248,7 @@ async function loadConfig() {
         (typeof check.cwd !== 'string' || !check.cwd.trim())
       ) {
         throw new Error(
-          `${checkId}: 'cwd' must be a non-empty string if provided.`,
+          `${checkId}: 'cwd' must be a non-empty string if provided.`
         );
       }
       if (check.enabled !== undefined && typeof check.enabled !== 'boolean') {
@@ -261,22 +261,22 @@ async function loadConfig() {
 
     log(
       'INFO',
-      `${C.success('Configuration loaded and validated.')} Found ${C.checkName(enabledChecks.length)} enabled checks.`,
+      `${C.success('Configuration loaded and validated.')} Found ${C.checkName(enabledChecks.length)} enabled checks.`
     );
     log(
       'DEBUG',
-      `Run Mode: ${C.bold(config.config.runMode)}, Fail Fast: ${C.bold(config.config.failFast)}, Timeout: ${C.bold(config.config.commandTimeout)}ms`,
+      `Run Mode: ${C.bold(config.config.runMode)}, Fail Fast: ${C.bold(config.config.failFast)}, Timeout: ${C.bold(config.config.commandTimeout)}ms`
     );
     log(
       'DEBUG',
-      `Visuals - Figlet: ${C.bold(config.config.visuals.useFiglet)}, Spinners: ${C.bold(config.config.visuals.useSpinners)}, Boxen: ${C.bold(config.config.visuals.useBoxen)}`,
+      `Visuals - Figlet: ${C.bold(config.config.visuals.useFiglet)}, Spinners: ${C.bold(config.config.visuals.useSpinners)}, Boxen: ${C.bold(config.config.visuals.useBoxen)}`
     );
     return true;
   } catch (error) {
     if (error.code === 'ENOENT') {
       log(
         'WARN',
-        `${ICONS.warning} Config file not found at ${C.filePath(CONFIG_PATH)}. Using default settings. No checks defined in default.`,
+        `${ICONS.warning} Config file not found at ${C.filePath(CONFIG_PATH)}. Using default settings. No checks defined in default.`
       );
       config = structuredClone(DEFAULT_CONFIG); // Ensure clean default state
       enabledChecks = [];
@@ -286,7 +286,7 @@ async function loadConfig() {
       log(
         'ERROR',
         `${ICONS.error} Error loading or validating configuration: ${error.message}`,
-        error,
+        error
       );
       enabledChecks = []; // Prevent running checks with bad config
       return false; // Indicate critical failure
@@ -336,7 +336,7 @@ async function getGitCommitHash() {
     const { stdout, failed } = await execa(
       'git',
       ['rev-parse', '--short=7', 'HEAD'],
-      { reject: false, stderr: 'ignore', timeout: 5000 }, // Add timeout
+      { reject: false, stderr: 'ignore', timeout: 5000 } // Add timeout
     );
     if (failed || !stdout.trim()) {
       return C.dim('N/A (Not a Git repo or no commits)');
@@ -367,7 +367,7 @@ function renderFiglet(text, colorFn = C.header) {
   } catch (error) {
     log(
       'WARN',
-      `Figlet rendering failed (font: ${config.config.visuals.figletFont}): ${error.message}. Falling back to simple header.`,
+      `Figlet rendering failed (font: ${config.config.visuals.figletFont}): ${error.message}. Falling back to simple header.`
     );
     console.log(colorFn(C.bold(`\n=== ${text.toUpperCase()} ===\n`))); // Fallback
   }
@@ -410,7 +410,7 @@ async function executeCheck(check, index, total) {
   } else {
     log(
       'INFO',
-      `${checkProgress} ${ICONS.running} Starting: ${C.checkName(check.name)} ${C.dim(`(${C.command(check.command)})`)}`,
+      `${checkProgress} ${ICONS.running} Starting: ${C.checkName(check.name)} ${C.dim(`(${C.command(check.command)})`)}`
     );
   }
 
@@ -443,13 +443,13 @@ async function executeCheck(check, index, total) {
       checkResult.status = 'success';
       log(
         'INFO',
-        `${checkProgress} ${ICONS.success} Passed:   ${C.checkName(check.name)} ${durationStr}`,
+        `${checkProgress} ${ICONS.success} Passed:   ${C.checkName(check.name)} ${durationStr}`
       );
       // Log stderr as a warning even on success if it's not empty
       if (checkResult.stderr?.trim()) {
         log(
           'WARN',
-          `${checkProgress} ${ICONS.warning} Check "${C.checkName(check.name)}" passed but produced stderr output:`,
+          `${checkProgress} ${ICONS.warning} Check "${C.checkName(check.name)}" passed but produced stderr output:`
         );
         console.warn(C.dim(truncateOutput(checkResult.stderr))); // Use console.warn directly
       }
@@ -457,12 +457,12 @@ async function executeCheck(check, index, total) {
       // Status remains 'failed' (default)
       log(
         'ERROR',
-        `${checkProgress} ${ICONS.failure} Failed:   ${C.checkName(check.name)} ${C.error(`(Exit Code: ${checkResult.exitCode})`)} ${durationStr}`,
+        `${checkProgress} ${ICONS.failure} Failed:   ${C.checkName(check.name)} ${C.error(`(Exit Code: ${checkResult.exitCode})`)} ${durationStr}`
       );
       // Log combined output on failure for context (at DEBUG level to avoid noise)
       log(
         'DEBUG',
-        `Output for failed check "${check.name}":\n${truncateOutput(checkResult.output)}`,
+        `Output for failed check "${check.name}":\n${truncateOutput(checkResult.output)}`
       );
     }
   } catch (error) {
@@ -482,14 +482,14 @@ async function executeCheck(check, index, total) {
     const durationStr = C.duration(formatDuration(checkResult.durationMs));
     log(
       'ERROR',
-      `${checkProgress} ${ICONS.error} Error executing: ${C.checkName(check.name)} ${durationStr}`,
+      `${checkProgress} ${ICONS.error} Error executing: ${C.checkName(check.name)} ${durationStr}`
     );
     // Log the specific error message and potentially truncated output
     log('ERROR', `  Reason: ${error.shortMessage || error.message}`, error); // Include error object for stack trace
     if (checkResult.output?.trim()) {
       log(
         'DEBUG',
-        `Output during execution error for "${check.name}":\n${truncateOutput(checkResult.output)}`,
+        `Output during execution error for "${check.name}":\n${truncateOutput(checkResult.output)}`
       );
     }
   }
@@ -529,7 +529,7 @@ async function printSummary(results, startTime, endTime, gitCommitHash) {
 
   renderFiglet(
     allPassed ? 'Checks Passed' : 'Checks Failed',
-    allPassed ? C.success : C.error,
+    allPassed ? C.success : C.error
   );
 
   const summaryLines = [
@@ -564,7 +564,7 @@ async function printSummary(results, startTime, endTime, gitCommitHash) {
         borderStyle: 'double',
         borderColor: boxBorderColor,
         backgroundColor: '#111111', // Dark background for contrast
-      }),
+      })
     );
   } else {
     // Simple text fallback for non-TTY or disabled Boxen
@@ -583,7 +583,7 @@ function printFailureDetails(failedChecks) {
   if (failedChecks.length === 0) return;
 
   console.log(
-    `\n${C.error.bold(`${ICONS.failure} Failure Details & Troubleshooting`)}`,
+    `\n${C.error.bold(`${ICONS.failure} Failure Details & Troubleshooting`)}`
   );
   printSeparator();
 
@@ -624,7 +624,7 @@ function printFailureDetails(failedChecks) {
           titleAlignment: 'left',
           borderStyle: 'round',
           borderColor: 'red',
-        }),
+        })
       );
     } else {
       // Simple text fallback
@@ -635,16 +635,16 @@ function printFailureDetails(failedChecks) {
   // Print next steps guidance after all details
   console.log(`\n${C.bold('Next Steps:')}`);
   console.log(
-    `1. Review the ${C.warn('Relevant Output')} for each failed check above.`,
+    `1. Review the ${C.warn('Relevant Output')} for each failed check above.`
   );
   console.log(
-    `2. Identify the root cause (e.g., lint errors, test failures, command issues).`,
+    `2. Identify the root cause (e.g., lint errors, test failures, command issues).`
   );
   console.log(
-    `3. Fix the underlying issues in your codebase or configuration.`,
+    `3. Fix the underlying issues in your codebase or configuration.`
   );
   console.log(
-    `4. Re-run checks using your designated command (e.g., ${C.command('npm run cq')}).`,
+    `4. Re-run checks using your designated command (e.g., ${C.command('npm run cq')}).`
   );
   console.log(`5. Commit your fixes once all checks pass successfully.`);
   printSeparator();
@@ -664,7 +664,7 @@ async function runQualityChecks() {
     if (!(await loadConfig())) {
       log(
         'ERROR',
-        `${ICONS.error} Exiting due to critical configuration loading errors.`,
+        `${ICONS.error} Exiting due to critical configuration loading errors.`
       );
       process.exit(1); // Exit immediately on critical config failure
     }
@@ -681,7 +681,7 @@ async function runQualityChecks() {
     if (enabledChecks.length === 0) {
       log(
         'WARN',
-        `${ICONS.warning} No enabled checks found in configuration. Nothing to execute.`,
+        `${ICONS.warning} No enabled checks found in configuration. Nothing to execute.`
       );
       printSeparator();
       const gitHash = await getGitCommitHash();
@@ -693,11 +693,11 @@ async function runQualityChecks() {
     const checksStartTime = performance.now();
     log(
       'INFO',
-      `Executing ${C.checkName(enabledChecks.length)} checks in ${C.info(`'${config.config.runMode}'`)} mode...`,
+      `Executing ${C.checkName(enabledChecks.length)} checks in ${C.info(`'${config.config.runMode}'`)} mode...`
     );
     log(
       'DEBUG',
-      `[System Stats] Start - Heap Used: ${Math.round(process.memoryUsage().heapUsed / 1024 / 1024)}MB`,
+      `[System Stats] Start - Heap Used: ${Math.round(process.memoryUsage().heapUsed / 1024 / 1024)}MB`
     );
 
     const results = [];
@@ -706,7 +706,7 @@ async function runQualityChecks() {
     if (config.config.runMode === 'parallel') {
       log('DEBUG', 'Executing checks in parallel.');
       const checkPromises = enabledChecks.map((check, i) =>
-        executeCheck(check, i, enabledChecks.length),
+        executeCheck(check, i, enabledChecks.length)
       );
       // Wait for all promises to settle (resolve or reject)
       const settledResults = await Promise.allSettled(checkPromises);
@@ -720,7 +720,7 @@ async function runQualityChecks() {
           log(
             'ERROR',
             `Critical error during execution of check "${enabledChecks[i]?.name || `index ${i}`}". Reason: ${settledResult.reason}`,
-            settledResult.reason,
+            settledResult.reason
           );
           // Create a placeholder failure result
           results.push({
@@ -749,7 +749,7 @@ async function runQualityChecks() {
           if (config.config.failFast) {
             log(
               'WARN',
-              `${ICONS.warning} Fail Fast enabled: Check '${C.checkName(check.name)}' failed. Aborting remaining checks.`,
+              `${ICONS.warning} Fail Fast enabled: Check '${C.checkName(check.name)}' failed. Aborting remaining checks.`
             );
             break; // Stop processing further checks
           }
@@ -765,11 +765,11 @@ async function runQualityChecks() {
 
     log(
       'DEBUG',
-      `[System Stats] End - Heap Used: ${Math.round(process.memoryUsage().heapUsed / 1024 / 1024)}MB`,
+      `[System Stats] End - Heap Used: ${Math.round(process.memoryUsage().heapUsed / 1024 / 1024)}MB`
     );
     log(
       'INFO',
-      `Finished running ${results.length} checks. Failures: ${checksFailedCount}.`,
+      `Finished running ${results.length} checks. Failures: ${checksFailedCount}.`
     );
 
     const gitCommitHash = await getGitCommitHash();
@@ -781,19 +781,19 @@ async function runQualityChecks() {
     // 7. Exit
     log(
       'INFO',
-      `Exiting with status code ${exitCode === 0 ? C.success(exitCode) : C.error(exitCode)}.`,
+      `Exiting with status code ${exitCode === 0 ? C.success(exitCode) : C.error(exitCode)}.`
     );
     process.exit(exitCode);
   } catch (error) {
     // Catch unexpected errors in the main script runner itself
     printSeparator();
     console.error(
-      C.critical('\n! C R I T I C A L   R U N N E R   E R R O R !'),
+      C.critical('\n! C R I T I C A L   R U N N E R   E R R O R !')
     );
     log(
       'ERROR',
       `${ICONS.error} An uncaught error occurred in the main script execution:`,
-      error, // Log the error object for stack trace
+      error // Log the error object for stack trace
     );
     printSeparator();
     process.exit(2); // Use a distinct exit code for runner errors

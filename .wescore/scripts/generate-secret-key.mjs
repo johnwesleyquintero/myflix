@@ -15,7 +15,7 @@ function generateSecretKey() {
     writeFileSync(
       join(KEY_DIR, 'secret-key.txt'),
       `# AUTO-GENERATED - DO NOT COMMIT
-${secretKey}`,
+${secretKey}`
     );
 
     console.log('Secret key generated and stored securely in .config/keys');

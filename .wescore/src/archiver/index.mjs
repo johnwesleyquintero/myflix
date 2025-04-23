@@ -19,7 +19,7 @@ export function createZipFromDirectory(sourceDir, outputZipPath) {
         fs.mkdirSync(zipOutputDir, { recursive: true });
         console.log(
           'INFO',
-          `Created releases directory: ${path.basename(zipOutputDir)}`,
+          `Created releases directory: ${path.basename(zipOutputDir)}`
         );
       }
     } catch (err) {
@@ -37,7 +37,7 @@ export function createZipFromDirectory(sourceDir, outputZipPath) {
           archive.pointer() /
           1024 /
           1024
-        ).toFixed(2)} MB)`,
+        ).toFixed(2)} MB)`
       );
       resolve(); // Resolve the promise on successful close
     });

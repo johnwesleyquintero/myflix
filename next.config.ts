@@ -1,10 +1,10 @@
-import type { NextConfig } from "next";
+import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
 
   images: {
-    domains: ["example.com"],
+    domains: ['example.com'],
   },
   env: {
     NEXTAUTH_URL: process.env.NEXTAUTH_URL,

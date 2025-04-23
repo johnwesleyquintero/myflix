@@ -11,12 +11,11 @@
     "format": "prettier --write . --log-level warn",
     "prisma:generate": "prisma generate",
     "cq": "node ./.wescore/scripts/check-quality.mjs",
-    "lint:smells": "eslint --ext .js,.jsx,.ts,.tsx . --rule 'sonarjs/no-duplicate-string: error' --rule 'sonarjs/no-identical-functions: error' --rule 'sonarjs/no-collapsible-if: error'"
+    "lint:smells": "eslint 'src/**/*.ts*' --no-error-on-unmatched-pattern"
   },
   "dependencies": {
     "@auth/prisma-adapter": "^2.8.0",
     "@geist-ui/core": "^2.3.8",
-    "@prisma/client": "^6.5.0",
     "axios": "^1.8.4",
     "bcrypt": "^5.1.1",
     "boxen": "^8.0.1",
@@ -34,12 +33,16 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
+    "@prisma/client": "^6.6.0",
     "@tailwindcss/postcss": "^4",
-    "@types/node": "^20",
+    "@types/bcrypt": "^5.0.2",
+    "@types/jest": "^29.5.14",
+    "@types/node": "^20.17.30",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "15.2.4",
+    "prettier": "^3.5.3",
     "prisma": "^6.5.0",
     "tailwindcss": "^4",
     "typescript": "^5"

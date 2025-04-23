@@ -41,7 +41,7 @@ export function runCommand(check, defaultTimeout, effectiveLogLevel) {
       // --- MODIFIED: Check log level for timeout warning (treat as warn) ---
       if (effectiveLogLevel >= LOG_LEVELS.warn) {
         console.warn(
-          chalk.yellow(`⏳ ${check.name} timeout after ${timeoutMs / 1000}s`),
+          chalk.yellow(`⏳ ${check.name} timeout after ${timeoutMs / 1000}s`)
         );
       }
       // --- END MODIFIED ---

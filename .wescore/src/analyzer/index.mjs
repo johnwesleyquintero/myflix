@@ -23,7 +23,7 @@ export function categorizeLogOutput(
   logData,
   taskId = 'unknown',
   errorPatterns = [],
-  warningPatterns = [],
+  warningPatterns = []
 ) {
   const lines = logData ? logData.split(/\r?\n/) : [];
   let errorCount = 0;
@@ -33,10 +33,10 @@ export function categorizeLogOutput(
 
   // Compile regex patterns once
   const compiledErrorPatterns = errorPatterns.map(
-    (pattern) => new RegExp(pattern, 'i'),
+    (pattern) => new RegExp(pattern, 'i')
   );
   const compiledWarningPatterns = warningPatterns.map(
-    (pattern) => new RegExp(pattern, 'i'),
+    (pattern) => new RegExp(pattern, 'i')
   );
 
   lines.forEach((line) => {

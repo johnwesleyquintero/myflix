@@ -134,8 +134,8 @@ function showCyberHeader() {
   renderFiglet('WESCORE', 'Cybermedium', CYBER_CONFIG.colors.header);
   console.log(
     CYBER_CONFIG.colors.header(
-      '<<< CYBERPUNK EDITION // v2077.42 // SYSTEM CHECK INITIATED >>>',
-    ),
+      '<<< CYBERPUNK EDITION // v2077.42 // SYSTEM CHECK INITIATED >>>'
+    )
   );
   console.log(
     CYBER_CONFIG.colors.asciiArt(String.raw`
@@ -145,7 +145,7 @@ function showCyberHeader() {
  ██▌▐▀▐█ ▪▐▌▐█▌▐▌▐█▌▐█•█▌▐█ ▪▐▌▐█▄▪▐█▐█▌▐█ ▪▐▌
  ▀▀▀ · ▀  ▀ .▀▀▀ ▀▀▀.▀  ▀ ▀  ▀  ▀▀▀▀ ▀▀▀ ▀  ▀
  // System Integrity Scan Initializing... Standby. //
-`),
+`)
   );
   playSound('startup');
 }
@@ -234,7 +234,7 @@ function stripAnsi(str) {
 function handleGlitch(error, check) {
   const randomResponse = getRandom(GLITCH_RESPONSES_FAIL);
   const errorDetails = stripAnsi(
-    error.stderr || error.stdout || error.message || 'Unknown Anomaly',
+    error.stderr || error.stdout || error.message || 'Unknown Anomaly'
   ); // Strip ANSI from command output
   const exitCodeInfo = error.exitCode ? ` (Exit Code: ${error.exitCode})` : '';
 
@@ -261,7 +261,7 @@ function handleNominal(check, duration) {
   log(
     'SUCCESS',
     `${randomResponse} (${CYBER_CONFIG.colors.duration(formatDuration(duration))})`,
-    check.name,
+    check.name
   );
   playSound('successSingle');
 }
@@ -271,7 +271,7 @@ function handleNominal(check, duration) {
 // ==================================================================
 async function runSubroutine(check, index, total) {
   const spinner = new Spinner(
-    `${chalk.yellow(`[${index}/${total}]`)} %s ${CYBER_CONFIG.colors.checkName(check.name)}... ${chalk.gray('Establishing connection...')}`,
+    `${chalk.yellow(`[${index}/${total}]`)} %s ${CYBER_CONFIG.colors.checkName(check.name)}... ${chalk.gray('Establishing connection...')}`
   );
   spinner.setSpinnerString(getRandom(CYBER_CONFIG.spinners));
   spinner.start();
@@ -315,7 +315,7 @@ async function runSubroutine(check, index, total) {
       resultData.status = 'glitched'; // Use 'glitched' for failure
       // Create an error-like object for the handler
       const failureError = new Error(
-        `Subroutine failed with exit code ${result.exitCode}`,
+        `Subroutine failed with exit code ${result.exitCode}`
       );
       failureError.stdout = result.stdout;
       failureError.stderr = result.stderr;
@@ -353,14 +353,14 @@ async function runCyberCheck() {
     if (checks.length === 0) {
       log(
         'WARN',
-        'No active protocols found in .wescore.json. System idle. 🤷',
+        'No active protocols found in .wescore.json. System idle. 🤷'
       );
       process.exit(0); // Exit normally if no checks defined
     }
 
     log(
       'INFO',
-      `Located ${chalk.magenta(checks.length)} protocols. Mode: ${chalk.yellow(config.runMode)}. Abort on Glitch: ${chalk.yellow(config.abortOnGlitch)}. Engaging...`,
+      `Located ${chalk.magenta(checks.length)} protocols. Mode: ${chalk.yellow(config.runMode)}. Abort on Glitch: ${chalk.yellow(config.abortOnGlitch)}. Engaging...`
     );
     log('INFO', 'Scanning the Net... Seeking targets...');
 
@@ -372,10 +372,10 @@ async function runCyberCheck() {
       if (config.runMode === 'parallel') {
         log(
           'INFO',
-          'Engaging parallel processing cores... Maximum bandwidth! 🔥',
+          'Engaging parallel processing cores... Maximum bandwidth! 🔥'
         );
         const promises = checks.map((check, i) =>
-          runSubroutine(check, i + 1, totalChecks),
+          runSubroutine(check, i + 1, totalChecks)
         );
         // Use allSettled to ensure all promises complete, even if some reject
         const settledResults = await Promise.allSettled(promises);
@@ -388,7 +388,7 @@ async function runCyberCheck() {
             // This indicates an error *within* runSubroutine wasn't caught, which is unlikely but possible
             log(
               'ERROR',
-              `CRITICAL RUNNER FAILURE: ${settledResult.reason?.message || settledResult.reason}`,
+              `CRITICAL RUNNER FAILURE: ${settledResult.reason?.message || settledResult.reason}`
             );
             // Create a placeholder result for reporting
             results.push({
@@ -413,7 +413,7 @@ async function runCyberCheck() {
             // Check if we need to abort early
             log(
               'WARN',
-              `🚨 ABORT TRIGGERED! Protocol '${check.name}' glitched. Disconnecting! 🚨`,
+              `🚨 ABORT TRIGGERED! Protocol '${check.name}' glitched. Disconnecting! 🚨`
             );
             playSound('failReport'); // Play alert sound
             break; // Exit the loop immediately
@@ -454,14 +454,14 @@ function showFinalSitrep(results, nominal, totalRun, totalDuration) {
     renderFiglet('SYSTEM NOMINAL', 'Doom', CYBER_CONFIG.colors.success);
     log(
       'SUCCESS',
-      'All protocols executed without anomaly. Clean run, netrunner. 😎',
+      'All protocols executed without anomaly. Clean run, netrunner. 😎'
     );
     playSound('successAll');
   } else {
     renderFiglet('ANOMALY DETECTED', 'Bloody', CYBER_CONFIG.colors.error);
     log(
       'ERROR',
-      `Run incomplete or corrupted: ${anomalies} protocol(s) reported anomalies.`,
+      `Run incomplete or corrupted: ${anomalies} protocol(s) reported anomalies.`
     );
     playSound('failReport');
   }
@@ -488,7 +488,7 @@ function showFinalSitrep(results, nominal, totalRun, totalDuration) {
       title: '[ SITREP ]',
       titleAlignment: 'center',
       backgroundColor: '#111111', // Dark background for the box
-    },
+    }
   );
   console.log(summaryBox);
 
@@ -507,20 +507,20 @@ function showFinalSitrep(results, nominal, totalRun, totalDuration) {
           ? `: ${check.error.shortMessage || check.error.message}`
           : ''; // Show execa error message if present
         console.log(
-          `  ${statusColor(statusIcon)} ${CYBER_CONFIG.colors.checkName(check.name)} ${statusColor(`[${check.status.toUpperCase()}]`)}${exitInfo}${errorMsg}`,
+          `  ${statusColor(statusIcon)} ${CYBER_CONFIG.colors.checkName(check.name)} ${statusColor(`[${check.status.toUpperCase()}]`)}${exitInfo}${errorMsg}`
         );
         // Optionally log truncated output for quick review
         // if (check.stderr) console.log(chalk.gray(`    Stderr: ${truncateOutput(check.stderr)}`));
       });
     log(
       'ERROR',
-      'Review the logs above for detailed anomaly reports. Patch the system, choom.',
+      'Review the logs above for detailed anomaly reports. Patch the system, choom.'
     );
   }
 
   log(
     'INFO',
-    `Wescore Cyberpunk Edition disconnecting... ${allNominal ? 'Stay low.' : 'Watch your back.'}`,
+    `Wescore Cyberpunk Edition disconnecting... ${allNominal ? 'Stay low.' : 'Watch your back.'}`
   );
 }
 
@@ -546,7 +546,7 @@ async function loadConfig() {
       configData = JSON.parse(rawConfig);
     } catch (parseError) {
       throw new Error(
-        `Data corruption in ${CONFIG_PATH}! JSON syntax error detected. Rogue AI interference?\n  ${parseError.message}`,
+        `Data corruption in ${CONFIG_PATH}! JSON syntax error detected. Rogue AI interference?\n  ${parseError.message}`
       );
     }
 
@@ -556,7 +556,7 @@ async function loadConfig() {
     }
     if (!configData.checks || !Array.isArray(configData.checks)) {
       throw new Error(
-        "Config shard missing 'checks' array protocol. Data incomplete.",
+        "Config shard missing 'checks' array protocol. Data incomplete."
       );
     }
 
@@ -564,21 +564,21 @@ async function loadConfig() {
       if (typeof c !== 'object' || c === null) {
         log(
           'WARN',
-          `Protocol at index ${index} is corrupted (not an object). Skipping.`,
+          `Protocol at index ${index} is corrupted (not an object). Skipping.`
         );
         return false;
       }
       if (!c.name || typeof c.name !== 'string') {
         log(
           'WARN',
-          `Protocol at index ${index} lacks 'name' identifier. Skipping.`,
+          `Protocol at index ${index} lacks 'name' identifier. Skipping.`
         );
         return false;
       }
       if (!c.command || typeof c.command !== 'string') {
         log(
           'WARN',
-          `Protocol "${c.name}" lacks 'command' subroutine. Skipping.`,
+          `Protocol "${c.name}" lacks 'command' subroutine. Skipping.`
         );
         return false;
       }
@@ -598,12 +598,12 @@ async function loadConfig() {
   } catch (error) {
     if (error.code === 'ENOENT') {
       throw new Error(
-        `Config shard not found at ${CONFIG_PATH}. Did the corpos wipe it? 🏢 Create one!`,
+        `Config shard not found at ${CONFIG_PATH}. Did the corpos wipe it? 🏢 Create one!`
       );
     }
     // Re-throw other validation/parse errors
     throw new Error(
-      `Failed to load or validate config shard: ${error.message}`,
+      `Failed to load or validate config shard: ${error.message}`
     );
   }
 }
@@ -629,13 +629,13 @@ runCyberCheck().catch((e) => {
   console.error(
     '\n' +
       CYBER_CONFIG.colors.critical(
-        '! C A T A S T R O P H I C   M A L F U N C T I O N !',
-      ),
+        '! C A T A S T R O P H I C   M A L F U N C T I O N !'
+      )
   );
   console.error(
     CYBER_CONFIG.colors.error(
-      'The Wescore runner flatlined! Core meltdown imminent! 🔥',
-    ),
+      'The Wescore runner flatlined! Core meltdown imminent! 🔥'
+    )
   );
   console.error(e); // Log the raw error
   process.exit(3); // Unique exit code for runner failure
