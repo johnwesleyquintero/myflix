@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 interface InputProps {
   id: string;
@@ -33,7 +33,7 @@ const Input: React.FC<InputProps> = ({ id, onChange, value, label, type }) => {
         "
         placeholder=" "
       />
-      <label 
+      <label
         htmlFor={id}
         className="
           absolute

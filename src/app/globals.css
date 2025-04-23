@@ -1,8 +1,13 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --primary: 59 130 246;
+  --secondary: 100 116 139;
+  --ring: 209 213 219;
 }
 
 @theme inline {
@@ -14,11 +19,37 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
-    --foreground: #ededed;
+    --foreground: #f5f5f5;
+    --primary: #3b82f6;
+  }
+}
+
+@layer components {
+  .focus-visible {
+    @apply outline-2 outline-offset-2 outline-primary;
+  }
+
+  button:focus-visible,
+  a:focus-visible {
+    @apply focus-visible;
   }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
+}
+
+@layer components {
+  .hover-transition {
+    @apply transition-colors duration-200 hover:text-primary;
+  }
+
+  .container {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+
+  .focus-ring {
+    @apply ring-2 ring-primary/50 ring-offset-2 ring-offset-background focus:outline-none;
+  }
 }

@@ -1,0 +1,84 @@
+{
+  "runInParallel": true,
+  "stopOnFail": false,
+  "commandTimeout": 300000,
+  "logLevel": "info",
+  "checks": [
+    {
+      "id": "format",
+      "name": "Formatting (Prettier)",
+      "command": "npm run format",
+      "description": "Checks code formatting using Prettier based on .prettierrc.json"
+    },
+    {
+      "id": "lint",
+      "name": "Linting",
+      "command": "npm run lint",
+      "description": "Checks for code style and potential errors using ESLint based on .eslintrc.json"
+    },
+    {
+      "id": "typecheck",
+      "name": "Type Checking (TSC)",
+      "command": "npx tsc --noEmit",
+      "description": "Performs static type checking using the TypeScript Compiler based on tsconfig.json"
+    },
+    {
+      "id": "smells",
+      "name": "Code Smell Analysis (ESLint/SonarJS)",
+      "command": "npm run lint:smells",
+      "enabled": true,
+      "description": "Detects potential code smells and maintainability issues."
+    }
+  ],
+  "errorCategories": {
+    "format": {
+      "patterns": [
+        "SyntaxError:",
+        "\\[error\\]",
+        "Parsing error:",
+        "needs formatting"
+      ],
+      "suggestion": "Execute `npm run format` to automatically format the codebase. Thoroughly review the changes for unexpected modifications or introduced issues. Address any formatting discrepancies to guarantee optimal code readability and consistency. Finally, verify the entire codebase is uniformly formatted and ready for subsequent development tasks."
+    },
+    "lint": {
+      "patterns": [
+        "^\\s*\\d+:\\d+\\s+Error:",
+        "^\\./.*?:$",
+        "Parsing error:",
+        "@typescript-eslint/",
+        "Error: "
+      ],
+      "suggestion": "Enforce code style consistency by iteratively linting and correcting: Execute `npm run lint`, meticulously review the output for violations of established style guidelines, systematically address each reported issue, and repeat this process until the codebase achieves a clean linting report, ensuring adherence to coding standards and best practices."
+    },
+    "typecheck": {
+      "patterns": [
+        "^.*?\\.tsx?\\(\\d+,\\d+\\): error TS\\d+:.*$",
+        "Could not find a declaration file for module"
+      ],
+      "suggestion": "Implement a rigorous type safety protocol: Execute `npm run typecheck` and meticulously analyze the output, prioritizing the immediate resolution of all identified type errors and inconsistencies. Iterate this process – type checking, analysis, and remediation – until the codebase achieves a state of complete type safety, free from any reported errors. Document all significant type-related changes and decisions made during the remediation process."
+    },
+    "build": {
+      "patterns": [
+        "Failed to compile",
+        "Build failed",
+        "Type error:",
+        "SyntaxError:",
+        "Module not found:",
+        "Error:.*?Expected",
+        "error TS\\d+:",
+        "Could not find a required file"
+      ],
+      "suggestion": "Build failed. Examine the build log above for specific errors (e.g., 'Module not found', 'SyntaxError', 'TypeError', TSxxxx). Check configuration files ('next.config.js', 'tsconfig.json'), dependencies ('package.json' - try running 'npm install'), and ensure environment variables are set correctly. Running 'npm run typecheck' or 'npm run lint' might reveal underlying issues."
+    },
+    "test": {
+      "patterns": [
+        "FAIL",
+        "Test failed",
+        "Error: ",
+        "expect\\(.*?\\)\\.toBe",
+        "Test suite failed"
+      ],
+      "suggestion": "Test failures detected. Review test output for specific failures, check test assertions and mock data. Run individual test files to isolate issues. Ensure test environment and dependencies are properly configured. Fix failing tests before proceeding."
+    }
+  }
+}

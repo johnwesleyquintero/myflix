@@ -6,7 +6,12 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit",
+    "format": "prettier --write . --log-level warn",
+    "prisma:generate": "prisma generate",
+    "cq": "node ./.wescore/scripts/check-quality.mjs",
+    "lint:smells": "eslint --ext .js,.jsx,.ts,.tsx . --rule 'sonarjs/no-duplicate-string: error' --rule 'sonarjs/no-identical-functions: error' --rule 'sonarjs/no-collapsible-if: error'"
   },
   "dependencies": {
     "@auth/prisma-adapter": "^2.8.0",
@@ -14,6 +19,11 @@
     "@prisma/client": "^6.5.0",
     "axios": "^1.8.4",
     "bcrypt": "^5.1.1",
+    "boxen": "^8.0.1",
+    "chalk": "^5.4.1",
+    "cli-spinner": "^0.2.10",
+    "execa": "^9.5.2",
+    "figlet": "^1.8.1",
     "mongodb": "^6.15.0",
     "next": "15.2.4",
     "next-auth": "^4.24.11",

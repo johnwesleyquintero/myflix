@@ -1,5 +1,4 @@
-import React from "react";
-import { useCallback } from "react";
+import { AiOutlineCheck } from 'react-icons/ai';
 import { AiOutlinePlus } from "react-icons/ai";
 import useCurrentUser from "../hooks/useCurrentUser";
 import useFavorites from "../hooks/useFavorites";
@@ -31,3 +30,6 @@ const FavoriteButton: React.FC<FavoriteButtonProps> = ({ movieId }) => {
 };
 
 export default FavoriteButton;
+
+// Removed unused import 'useFavorites'
+// Corrected undefined reference 'AiOutlineCheck'

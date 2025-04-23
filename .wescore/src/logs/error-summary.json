@@ -1,0 +1,18 @@
+{
+  "totalErrors": 1,
+  "categoryCounts": {
+    "UNKNOWN": 1
+  },
+  "recentErrors": [
+    {
+      "timestamp": "2025-04-16T17:38:33.832Z",
+      "category": "UNKNOWN",
+      "message": "Cannot read properties of undefined (reading 'heapUsed')",
+      "stack": "TypeError: Cannot read properties of undefined (reading 'heapUsed')\n    at logProcessStats (file:///C:/Users/johnw/OneDrive/Desktop/portfolio/.wescore/scripts/check-quality.mjs:44:52)\n    at main (file:///C:/Users/johnw/OneDrive/Desktop/portfolio/.wescore/scripts/check-quality.mjs:61:5)\n    at file:///C:/Users/johnw/OneDrive/Desktop/portfolio/.wescore/scripts/check-quality.mjs:363:1\n    at ModuleJob.run (node:internal/modules/esm/module_job:263:25)\n    at async ModuleLoader.import (node:internal/modules/esm/loader:540:24)\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)",
+      "context": {
+        "script": "check-quality.mjs",
+        "phase": "mainExecution"
+      }
+    }
+  ]
+}

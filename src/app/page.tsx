@@ -1,5 +1,5 @@
 "use client";
-'use client';
+"use client";
 import React, { useState, useCallback } from "react";
 import Input from "@/components/input";
 import Image from "next/image";

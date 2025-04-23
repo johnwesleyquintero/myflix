@@ -1,0 +1,17 @@
+{
+  "name": ".wescore",
+  "version": "1.0.0",
+  "description": "wescore tools and utilities",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node scripts/main.mjs",
+    "test:wescore": "jest --config=jest.config.js"
+  },
+  "dependencies": {
+    "archiver": "^5.0.0",
+    "chalk": "^4.1.2",
+    "execa": "^9.5.2"
+  }
+}

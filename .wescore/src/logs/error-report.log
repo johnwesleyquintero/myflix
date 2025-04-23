@@ -1,0 +1,16 @@
+========================================
+Wescore Internal Error Log
+Started: 2025-04-16T17:38:33.823Z
+========================================
+
+[2025-04-16T17:38:33.832Z] [UNKNOWN] | Context: {"script":"check-quality.mjs","phase":"mainExecution"}
+Message: Cannot read properties of undefined (reading 'heapUsed')
+Stack:
+TypeError: Cannot read properties of undefined (reading 'heapUsed')
+    at logProcessStats (file:///C:/Users/johnw/OneDrive/Desktop/portfolio/.wescore/scripts/check-quality.mjs:44:52)
+    at main (file:///C:/Users/johnw/OneDrive/Desktop/portfolio/.wescore/scripts/check-quality.mjs:61:5)
+    at file:///C:/Users/johnw/OneDrive/Desktop/portfolio/.wescore/scripts/check-quality.mjs:363:1
+    at ModuleJob.run (node:internal/modules/esm/module_job:263:25)
+    at async ModuleLoader.import (node:internal/modules/esm/loader:540:24)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)
+----------------------------------------
